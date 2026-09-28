@@ -8,5 +8,5 @@
 - **遮罩**：報告與 `expand` 預設套用遮罩（AWS/GitHub/Slack/API key、JWT、Bearer、URL 帳密、`*PASSWORD=`/`*TOKEN=` 等）。**遮罩是盡力而為，不是完整保護。** `--raw` 會回傳原始 bytes。
 - **報告內容**：統計、事件 ID、相對路徑、來源行號與遮罩後摘要；不複製完整 prompt。Markdown 會轉義不可信文字，不產生 HTML 或外部圖片。
 - **Test view 不遮罩**：optimize 模式的 view 取代的是 Agent 原本就會看到的原始輸出；若遮罩可能改變測試失敗資訊，因此 view 與原始輸出一樣未遮罩。
-- **Fixtures**：`fixtures/real/jest-29.7.0` 是合成測試碼的真實 Jest 輸出，路徑已替換為 `<ROOT>`／`<RUN>`／`~`。`fixtures/real/claude-code-2.1.283` 由本專案開發 session 產生，所有文字、命令與工具結果都換成 hash，ID 重新編號，只保留專案內相對路徑與 usage 數字。發布前請再次檢查。
+- **Fixtures**：`fixtures/real/jest-29.7.0` 是合成測試碼的真實 Jest 輸出，路徑已替換為 `<ROOT>`／`<RUN>`／`~`。`fixtures/real/claude-code-2.1.283` 由本專案開發 session 產生，所有文字、命令與工具結果都換成加鹽 hash（每次產生隨機鹽且不保存，短文字也無法以字典比對還原；同一檔案內相同內容的 hash 仍相同），ID 重新編號，只保留專案內相對路徑與 usage 數字。發布前請再次檢查。
 - **清理**：`prune --root <dir> --older-than 7d` 預設只列出；需 `--apply` 才刪除。不會自動清除。

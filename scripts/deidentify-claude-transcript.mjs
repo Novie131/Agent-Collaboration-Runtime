@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // Turns a real Claude Code transcript into a structure-only fixture:
-//  - every text/thinking/tool-result body is replaced by a short hash placeholder
+//  - every text/thinking/tool-result body is replaced by a short salted-hash placeholder
 //  - ids (uuid, session, request, message, tool_use) are remapped to sequential ids
 //  - file paths are kept only when inside --project-root (made relative), otherwise hashed
 //  - shell commands are hashed; "Exit code N" / "command not found" markers are kept
 //  - usage numbers, entry types, flags and tool names are kept as-is
 // Usage: node scripts/deidentify-claude-transcript.mjs <transcript.jsonl> <out.jsonl> --project-root <dir> [--max-lines N]
-import { createHash } from 'node:crypto';
+import { createHmac, randomBytes } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { relative, resolve, sep } from 'node:path';
 
@@ -22,7 +22,10 @@ if (!input || !output) {
 const root = resolve(opt('--project-root', process.cwd()));
 const maxLines = Number(opt('--max-lines', '400'));
 
-const h = (s) => createHash('sha256').update(String(s)).digest('hex').slice(0, 12);
+// Keyed with a random salt that is never written anywhere: equal inputs still get equal
+// placeholders within one output file, but short texts cannot be recovered by guessing.
+const salt = randomBytes(32);
+const h = (s) => createHmac('sha256', salt).update(String(s)).digest('hex').slice(0, 12);
 const maps = new Map();
 const remap = (kind, v) => {
   if (v === undefined || v === null) return v;
