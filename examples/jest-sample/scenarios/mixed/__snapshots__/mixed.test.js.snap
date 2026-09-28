@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mixed statuses matches file snapshot 1`] = `
+{
+  "a": 1,
+  "b": [
+    1,
+    2,
+    3,
+  ],
+}
+`;

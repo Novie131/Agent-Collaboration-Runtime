@@ -1,0 +1,38 @@
+{
+  "name": "agent-efficiency",
+  "version": "0.1.0",
+  "description": "Quality-first token optimisation tooling for coding agents: session diagnostics, a controlled Jest result view, and paired quality/token comparison.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "agent-efficiency": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "integrations",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "cli": "node dist/cli.js",
+    "fixtures:jest": "node scripts/capture-jest-fixtures.mjs"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,27 @@
+[agent-efficiency jest-v1 (experimental) · selective view, not lossless · artifact ae_20260928162920_aab55d71]
+$ jest scenarios/generated-many  (cwd examples/jest-sample · started 2026-09-28T16:29:20.406Z · 1.28s · exit 1 · not timed out · run complete)
+Suites: 1 failed, 119 passed, 120 total · Tests: 1 failed, 359 passed, 360 total
+
+FAIL scenarios/generated-many/module-057.test.js
+  ● module 057 › adds
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 59
+    Received: 58
+
+      1 | const { sum } = require('../../src/math');
+      2 | describe('module 057', () => {
+    > 3 |   test('adds', () => expect(sum(57, 1)).toBe(59));
+        |                                         ^
+      4 |   test('identity', () => expect(sum(57, 0)).toBe(57));
+      5 |   test('commutes', () => expect(sum(1, 57)).toBe(sum(57, 1)));
+      6 | });
+
+      at Object.toBe (scenarios/generated-many/module-057.test.js:3:41)
+
+Omitted (nothing re-run): agent-efficiency expand ae_20260928162920_aab55d71 --run-dir <RUN>/many-suites --part <part>
+  passed: names of 359 passed test(s)
+  stderr --raw: 128 reporter line(s) verified against the JSON result; 2 failure block(s) identical to the messages above
+  failures: raw failureMessages (unfiltered stacks) and failureDetails
+  result: per-test durations, full JSON result

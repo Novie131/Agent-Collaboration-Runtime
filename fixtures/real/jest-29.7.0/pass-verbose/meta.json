@@ -1,0 +1,62 @@
+{
+  "kind": "real Jest output of synthetic test code (examples/jest-sample); absolute paths replaced by <ROOT>/<RUN>/~",
+  "jest_version": "29.7.0",
+  "node_version": "v24.20.0",
+  "platform": "darwin",
+  "jest_args": [
+    "scenarios/pass",
+    "--verbose"
+  ],
+  "wrapper_exit_code": 0,
+  "jest_exit_code": 0,
+  "shadow_gate": [
+    {
+      "check": "format.version",
+      "passed": true,
+      "detail": "Jest 29.7.0"
+    },
+    {
+      "check": "format.result",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "process.complete",
+      "passed": true,
+      "detail": "exit 0"
+    },
+    {
+      "check": "result.consistency",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "result.exit_agreement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "capture.complete",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "capture.utf8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "artifacts.hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "size.smaller_than_raw",
+      "passed": true,
+      "detail": "view 660 B vs raw 2239 B (bytes only; not a token measurement)"
+    }
+  ],
+  "raw_bytes": 2239,
+  "view_bytes": 660,
+  "captured_at": "2026-09-28T16:29:23.820Z"
+}

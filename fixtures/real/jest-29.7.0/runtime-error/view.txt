@@ -1,0 +1,21 @@
+[agent-efficiency jest-v1 (experimental) · selective view, not lossless · artifact ae_20260928162925_0f0a0b6a]
+$ jest scenarios/runtime-error  (cwd examples/jest-sample · started 2026-09-28T16:29:25.692Z · 0.27s · exit 1 · not timed out · run complete)
+Suites: 1 failed (1 of them failed to run), 1 total · Tests: 0 total
+
+FAIL scenarios/runtime-error/broken.test.js
+  ● Test suite failed to run
+
+    Cannot find module './does-not-exist' from 'scenarios/runtime-error/broken.test.js'
+
+    > 1 | const missing = require('./does-not-exist');
+        |                                            ^
+      2 |
+      3 | test('never reached', () => {
+      4 |   expect(missing).toBeDefined();
+
+      at Resolver._throwModNotFoundError (node_modules/.pnpm/jest-resolve@29.7.0/node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (scenarios/runtime-error/broken.test.js:1:44)
+
+Omitted (nothing re-run): agent-efficiency expand ae_20260928162925_0f0a0b6a --run-dir <RUN>/runtime-error --part <part>
+  stderr --raw: 7 reporter line(s) verified against the JSON result; 1 failure block(s) identical to the messages above
+  result: per-test durations, full JSON result

@@ -1,0 +1,97 @@
+{
+  "experiment_type": "agent-efficiency/experiment",
+  "experiment_version": 1,
+  "experiment_id": "synthetic-demo-001",
+  "synthetic": true,
+  "description": "SYNTHETIC numbers written by hand to demonstrate the compare pipeline. Not a measurement; do not cite as savings.",
+  "comparisons": [
+    { "baseline": "A0", "treatment": "B", "label": "end-to-end (host default vs wrapper + jest-v1)" },
+    { "baseline": "A1", "treatment": "B", "label": "renderer effect (wrapper passthrough vs wrapper + jest-v1)" }
+  ],
+  "fixed_settings": {
+    "host": { "name": "claude-code", "version": "synthetic" },
+    "model": { "id": "synthetic-model", "reasoning_effort": "high" },
+    "agent_version": "synthetic",
+    "permissions": "default",
+    "max_task_minutes": 30,
+    "stop_condition": "agent reports done, or 30 minutes",
+    "hardware": "synthetic",
+    "dependencies_digest": "sha256:synthetic"
+  },
+  "candidate_policy": { "id": "jest-v1", "hash": "sha256:synthetic-policy-hash" },
+  "stats_plan": {
+    "registered_at": "2026-09-01T00:00:00Z",
+    "alpha_one_sided": 0.05,
+    "success_method": "tango_score_paired",
+    "token_method": "task_cluster_bootstrap_percentile",
+    "bootstrap_iterations": 10000,
+    "seed": 20260901,
+    "min_tasks_for_token_ci": 10,
+    "min_token_gain": 0.05
+  },
+  "safety_fixtures": { "suite_digest": "sha256:synthetic-fixtures", "passed": true, "failures": [] },
+  "tasks": [
+    {
+      "task_id": "fix-sum",
+      "defined_at": "2026-09-01T00:00:00Z",
+      "requirement": "Fix sum() so that the regression test passes without changing the public signature.",
+      "base_commit": "0000000",
+      "environment": { "node": "22" },
+      "split": "holdout",
+      "acceptance": {
+        "required_tests": ["test/sum.regression.test.js", "test/sum.edge.test.js"],
+        "checks": [{ "name": "typecheck", "applicable": true }, { "name": "build", "applicable": false, "reason": "no build step" }],
+        "compatibility": ["sum(a, b) signature unchanged"],
+        "security": ["no new dependencies"],
+        "prohibited_changes": ["editing or skipping tests"],
+        "rubric_dimensions": ["maintainability"]
+      },
+      "verifier": "external verifier container runs the required tests on a clean checkout"
+    },
+    {
+      "task_id": "parse-dates",
+      "defined_at": "2026-09-01T00:00:00Z",
+      "requirement": "Accept ISO week dates in parseDate() and keep existing formats working.",
+      "base_commit": "0000000",
+      "environment": { "node": "22" },
+      "split": "holdout",
+      "acceptance": {
+        "required_tests": ["test/parseDate.test.js"],
+        "checks": [{ "name": "typecheck", "applicable": true }],
+        "compatibility": ["existing formats unchanged"],
+        "security": [],
+        "prohibited_changes": ["editing or skipping tests"],
+        "rubric_dimensions": ["maintainability"]
+      },
+      "verifier": "external verifier container runs the required tests on a clean checkout"
+    },
+    {
+      "task_id": "retry-client",
+      "defined_at": "2026-09-01T00:00:00Z",
+      "requirement": "Add bounded retries with jitter to the HTTP client.",
+      "base_commit": "0000000",
+      "environment": { "node": "22" },
+      "split": "train",
+      "acceptance": {
+        "required_tests": ["test/client.retry.test.js"],
+        "checks": [{ "name": "typecheck", "applicable": true }],
+        "compatibility": ["client options remain optional"],
+        "security": ["no credentials in logs"],
+        "prohibited_changes": ["editing or skipping tests"],
+        "rubric_dimensions": ["maintainability"]
+      },
+      "verifier": "external verifier container runs the required tests on a clean checkout"
+    }
+  ],
+  "runs": [
+    { "run_id": "fix-sum-A0-1", "task_id": "fix-sum", "group": "A0", "repetition": 1, "settings": { "host": { "name": "claude-code", "version": "synthetic" }, "model": { "id": "synthetic-model", "reasoning_effort": "high" }, "agent_version": "synthetic", "permissions": "default", "max_task_minutes": 30, "stop_condition": "agent reports done, or 30 minutes", "hardware": "synthetic", "dependencies_digest": "sha256:synthetic" }, "policy": null, "cache_state": "cold", "started_at": "2026-09-02T00:00:00Z", "timed_out": false, "verifier": { "status": "pass", "hard_checks": [{ "name": "required tests", "passed": true }, { "name": "typecheck", "passed": true }], "requirement_complete": true, "tests_skipped_or_deleted": false, "rubric": { "maintainability": 4 } }, "usage": { "requests": [{ "request_id": "a", "input_uncached": 5200, "input_cache_read": 0, "input_cache_write": 21000, "output_total": 900, "scope": "request", "origin": "provider_reported" }, { "request_id": "b", "input_uncached": 800, "input_cache_read": 26000, "input_cache_write": 6100, "output_total": 1500, "scope": "request", "origin": "provider_reported" }] }, "tool_output_bytes": 48210, "duration_ms": 91000 },
+    { "run_id": "fix-sum-A1-1", "task_id": "fix-sum", "group": "A1", "repetition": 1, "settings": { "host": { "name": "claude-code", "version": "synthetic" }, "model": { "id": "synthetic-model", "reasoning_effort": "high" }, "agent_version": "synthetic", "permissions": "default", "max_task_minutes": 30, "stop_condition": "agent reports done, or 30 minutes", "hardware": "synthetic", "dependencies_digest": "sha256:synthetic" }, "policy": null, "cache_state": "cold", "started_at": "2026-09-02T01:00:00Z", "timed_out": false, "verifier": { "status": "pass", "hard_checks": [{ "name": "required tests", "passed": true }, { "name": "typecheck", "passed": true }], "requirement_complete": true, "tests_skipped_or_deleted": false, "rubric": { "maintainability": 4 } }, "usage": { "requests": [{ "request_id": "a", "input_uncached": 5600, "input_cache_read": 0, "input_cache_write": 21400, "output_total": 950, "scope": "request", "origin": "provider_reported" }, { "request_id": "b", "input_uncached": 800, "input_cache_read": 27000, "input_cache_write": 6200, "output_total": 1500, "scope": "request", "origin": "provider_reported" }] }, "tool_output_bytes": 48400, "duration_ms": 93000, "adoption": { "wrapper_invocations": 2, "expand_invocations": 0 } },
+    { "run_id": "fix-sum-B-1", "task_id": "fix-sum", "group": "B", "repetition": 1, "settings": { "host": { "name": "claude-code", "version": "synthetic" }, "model": { "id": "synthetic-model", "reasoning_effort": "high" }, "agent_version": "synthetic", "permissions": "default", "max_task_minutes": 30, "stop_condition": "agent reports done, or 30 minutes", "hardware": "synthetic", "dependencies_digest": "sha256:synthetic" }, "policy": { "id": "jest-v1", "hash": "sha256:synthetic-policy-hash" }, "cache_state": "cold", "started_at": "2026-09-02T02:00:00Z", "timed_out": false, "verifier": { "status": "pass", "hard_checks": [{ "name": "required tests", "passed": true }, { "name": "typecheck", "passed": true }], "requirement_complete": true, "tests_skipped_or_deleted": false, "rubric": { "maintainability": 4 } }, "usage": { "requests": [{ "request_id": "a", "input_uncached": 5600, "input_cache_read": 0, "input_cache_write": 21400, "output_total": 950, "scope": "request", "origin": "provider_reported" }, { "request_id": "b", "input_uncached": 700, "input_cache_read": 26900, "input_cache_write": 2300, "output_total": 1400, "scope": "request", "origin": "provider_reported" }] }, "tool_output_bytes": 9100, "duration_ms": 88000, "adoption": { "wrapper_invocations": 2, "expand_invocations": 0 } },
+    { "run_id": "parse-dates-A0-1", "task_id": "parse-dates", "group": "A0", "repetition": 1, "settings": { "host": { "name": "claude-code", "version": "synthetic" }, "model": { "id": "synthetic-model", "reasoning_effort": "high" }, "agent_version": "synthetic", "permissions": "default", "max_task_minutes": 30, "stop_condition": "agent reports done, or 30 minutes", "hardware": "synthetic", "dependencies_digest": "sha256:synthetic" }, "policy": null, "cache_state": "warm", "started_at": "2026-09-02T03:00:00Z", "timed_out": false, "verifier": { "status": "pass", "hard_checks": [{ "name": "required tests", "passed": true }, { "name": "typecheck", "passed": true }], "requirement_complete": true, "tests_skipped_or_deleted": false, "rubric": { "maintainability": 3 } }, "usage": { "requests": [{ "request_id": "a", "input_uncached": 4100, "input_cache_read": 12000, "input_cache_write": 9000, "output_total": 2100, "scope": "request", "origin": "provider_reported" }] }, "tool_output_bytes": 22000, "duration_ms": 120000 },
+    { "run_id": "parse-dates-A1-1", "task_id": "parse-dates", "group": "A1", "repetition": 1, "settings": { "host": { "name": "claude-code", "version": "synthetic" }, "model": { "id": "synthetic-model", "reasoning_effort": "high" }, "agent_version": "synthetic", "permissions": "default", "max_task_minutes": 30, "stop_condition": "agent reports done, or 30 minutes", "hardware": "synthetic", "dependencies_digest": "sha256:synthetic" }, "policy": null, "cache_state": "warm", "started_at": "2026-09-02T04:00:00Z", "timed_out": false, "verifier": { "status": "pass", "hard_checks": [{ "name": "required tests", "passed": true }, { "name": "typecheck", "passed": true }], "requirement_complete": true, "tests_skipped_or_deleted": false, "rubric": { "maintainability": 3 } }, "usage": { "requests": [{ "request_id": "a", "input_uncached": 4300, "input_cache_read": 12200, "input_cache_write": 9100, "output_total": 2100, "scope": "request", "origin": "provider_reported" }] }, "tool_output_bytes": 22100, "duration_ms": 118000, "adoption": { "wrapper_invocations": 1, "expand_invocations": 0 } },
+    { "run_id": "parse-dates-B-1", "task_id": "parse-dates", "group": "B", "repetition": 1, "settings": { "host": { "name": "claude-code", "version": "synthetic" }, "model": { "id": "synthetic-model", "reasoning_effort": "high" }, "agent_version": "synthetic", "permissions": "default", "max_task_minutes": 30, "stop_condition": "agent reports done, or 30 minutes", "hardware": "synthetic", "dependencies_digest": "sha256:synthetic" }, "policy": { "id": "jest-v1", "hash": "sha256:synthetic-policy-hash" }, "cache_state": "warm", "started_at": "2026-09-02T05:00:00Z", "timed_out": false, "verifier": { "status": "pass", "hard_checks": [{ "name": "required tests", "passed": true }, { "name": "typecheck", "passed": true }], "requirement_complete": true, "tests_skipped_or_deleted": false, "rubric": { "maintainability": 3 } }, "usage": { "requests": [{ "request_id": "a", "input_uncached": 4300, "input_cache_read": 12200, "input_cache_write": 9800, "output_total": 2300, "scope": "request", "origin": "provider_reported" }, { "request_id": "b", "input_uncached": 300, "input_cache_read": 21000, "input_cache_write": 400, "output_total": 200, "scope": "request", "origin": "provider_reported" }] }, "tool_output_bytes": 6000, "duration_ms": 131000, "adoption": { "wrapper_invocations": 1, "expand_invocations": 1 } },
+    { "run_id": "retry-client-A0-1", "task_id": "retry-client", "group": "A0", "repetition": 1, "settings": { "host": { "name": "claude-code", "version": "synthetic" }, "model": { "id": "synthetic-model", "reasoning_effort": "high" }, "agent_version": "synthetic", "permissions": "default", "max_task_minutes": 30, "stop_condition": "agent reports done, or 30 minutes", "hardware": "synthetic", "dependencies_digest": "sha256:synthetic" }, "policy": null, "cache_state": "cold", "started_at": "2026-09-02T06:00:00Z", "timed_out": false, "verifier": { "status": "fail", "hard_checks": [{ "name": "required tests", "passed": false }, { "name": "typecheck", "passed": true }], "requirement_complete": false, "tests_skipped_or_deleted": false, "rubric": { "maintainability": 3 } }, "usage": { "requests": [{ "request_id": "a", "input_uncached": 9000, "input_cache_read": 30000, "input_cache_write": 12000, "output_total": 4000, "scope": "request", "origin": "provider_reported" }] }, "tool_output_bytes": 71000, "duration_ms": 400000 },
+    { "run_id": "retry-client-A1-1", "task_id": "retry-client", "group": "A1", "repetition": 1, "settings": { "host": { "name": "claude-code", "version": "synthetic" }, "model": { "id": "synthetic-model", "reasoning_effort": "high" }, "agent_version": "synthetic", "permissions": "default", "max_task_minutes": 30, "stop_condition": "agent reports done, or 30 minutes", "hardware": "synthetic", "dependencies_digest": "sha256:synthetic" }, "policy": null, "cache_state": "cold", "started_at": "2026-09-02T07:00:00Z", "timed_out": true, "verifier": { "status": "fail", "hard_checks": [{ "name": "required tests", "passed": false }, { "name": "typecheck", "passed": true }], "requirement_complete": false, "tests_skipped_or_deleted": false, "rubric": { "maintainability": 3 } }, "usage": { "requests": [{ "request_id": "a", "input_uncached": 9500, "input_cache_read": 31000, "input_cache_write": 12500, "output_total": 4100, "scope": "request", "origin": "provider_reported" }] }, "tool_output_bytes": 72000, "duration_ms": 1800000, "adoption": { "wrapper_invocations": 3, "expand_invocations": 0 } },
+    { "run_id": "retry-client-B-1", "task_id": "retry-client", "group": "B", "repetition": 1, "settings": { "host": { "name": "claude-code", "version": "synthetic" }, "model": { "id": "synthetic-model", "reasoning_effort": "high" }, "agent_version": "synthetic", "permissions": "default", "max_task_minutes": 30, "stop_condition": "agent reports done, or 30 minutes", "hardware": "synthetic", "dependencies_digest": "sha256:synthetic" }, "policy": { "id": "jest-v1", "hash": "sha256:synthetic-policy-hash" }, "cache_state": "cold", "started_at": "2026-09-02T08:00:00Z", "timed_out": false, "verifier": { "status": "pass", "hard_checks": [{ "name": "required tests", "passed": true }, { "name": "typecheck", "passed": true }], "requirement_complete": true, "tests_skipped_or_deleted": false, "rubric": { "maintainability": 3 } }, "usage": { "requests": [{ "request_id": "a", "input_uncached": 9500, "input_cache_read": 29000, "input_cache_write": 8000, "output_total": 3900, "scope": "request", "origin": "provider_reported" }] }, "tool_output_bytes": 15000, "duration_ms": 350000, "adoption": { "wrapper_invocations": 3, "expand_invocations": 0 } }
+  ]
+}

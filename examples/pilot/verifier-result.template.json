@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "hard_checks": [
+    { "name": "required tests (clean checkout, run by the external verifier)", "passed": true },
+    { "name": "typecheck", "passed": true }
+  ],
+  "requirement_complete": true,
+  "tests_skipped_or_deleted": false,
+  "false_completion_claim": false,
+  "rubric": { "maintainability": 4 }
+}

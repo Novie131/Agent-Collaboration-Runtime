@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+# local run artifacts and reports (may contain secrets; never commit)
+runs/
+run-*/
+report/
+comparison/
+.agent-efficiency/

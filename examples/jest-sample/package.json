@@ -1,0 +1,11 @@
+{
+  "name": "agent-efficiency-jest-sample",
+  "private": true,
+  "description": "Synthetic test code used to capture real Jest output for fixtures. Some scenarios fail on purpose.",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "29.7.0"
+  }
+}

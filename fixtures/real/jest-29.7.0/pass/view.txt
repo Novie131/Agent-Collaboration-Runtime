@@ -1,0 +1,8 @@
+[agent-efficiency jest-v1 (experimental) · selective view, not lossless · artifact ae_20260928162922_650ce451]
+$ jest scenarios/pass  (cwd examples/jest-sample · started 2026-09-28T16:29:22.906Z · 0.38s · exit 0 · not timed out · run complete)
+Suites: 2 passed, 2 total · Tests: 68 passed, 68 total
+
+Omitted (nothing re-run): agent-efficiency expand ae_20260928162922_650ce451 --run-dir <RUN>/pass --part <part>
+  passed: names of 68 passed test(s)
+  stderr --raw: 8 reporter line(s) verified against the JSON result
+  result: per-test durations, full JSON result

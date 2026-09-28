@@ -1,0 +1,163 @@
+[agent-efficiency jest-v1 (experimental) · selective view, not lossless · artifact ae_20260928162926_a6505cee]
+$ jest --testPathIgnorePatterns generated-many  (cwd examples/jest-sample · started 2026-09-28T16:29:26.062Z · 0.39s · exit 1 · not timed out · run complete)
+Suites: 3 failed (1 of them failed to run), 4 passed, 7 total · Tests: 5 failed, 2 skipped, 1 todo, 143 passed, 151 total · Snapshots: 2 passed, 2 total
+
+FAIL scenarios/fail/fail.test.js
+  ● intentional failures › number mismatch
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 2
+
+      3 | describe('intentional failures', () => {
+      4 |   test('number mismatch', () => {
+    > 5 |     expect(sum(1, 1)).toBe(3);
+        |                       ^
+      6 |   });
+      7 |
+      8 |   test('object diff', () => {
+
+      at Object.toBe (scenarios/fail/fail.test.js:5:23)
+
+  ● intentional failures › object diff
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+        "id": 1,
+    -   "name": "Ada Lovelace",
+    +   "name": "Ada",
+        "tags": Array [
+          "x",
+    -     "z",
+    +     "y",
+        ],
+      }
+
+       7 |
+       8 |   test('object diff', () => {
+    >  9 |     expect({ id: 1, name: 'Ada', tags: ['x', 'y'] }).toEqual({ id: 1, name: 'Ada Lovelace', tags: ['x', 'z'] });
+         |                                                      ^
+      10 |   });
+      11 |
+      12 |   test('unicode multi-line string diff', () => {
+
+      at Object.toEqual (scenarios/fail/fail.test.js:9:54)
+
+  ● intentional failures › unicode multi-line string diff
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      第一行
+    - creme-brulee
+    + creme
+      last ✓
+
+      11 |
+      12 |   test('unicode multi-line string diff', () => {
+    > 13 |     expect(`第一行\n${slugify('Crème')}\nlast ✓`).toBe('第一行\ncreme-brulee\nlast ✓');
+         |                                                ^
+      14 |   });
+      15 |
+      16 |   test('thrown error with stack', () => {
+
+      at Object.toBe (scenarios/fail/fail.test.js:13:48)
+
+  ● intentional failures › thrown error with stack
+
+    TypeError: cannot read property "x" of undefined (simulated)
+
+      16 |   test('thrown error with stack', () => {
+      17 |     function deep() {
+    > 18 |       throw new TypeError('cannot read property "x" of undefined (simulated)');
+         |             ^
+      19 |     }
+      20 |     deep();
+      21 |   });
+
+      at deep (scenarios/fail/fail.test.js:18:13)
+      at Object.deep (scenarios/fail/fail.test.js:20:5)
+
+FAIL scenarios/fail/sum-extra.test.js
+  ● off by one
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 21
+    Received: 20
+
+       6 |
+       7 | test('off by one', () => {
+    >  8 |   expect(sum(10, 10)).toBe(21);
+         |                       ^
+       9 | });
+      10 |
+
+      at Object.toBe (scenarios/fail/sum-extra.test.js:8:23)
+
+FAIL scenarios/runtime-error/broken.test.js
+  ● Test suite failed to run
+
+    Cannot find module './does-not-exist' from 'scenarios/runtime-error/broken.test.js'
+
+    > 1 | const missing = require('./does-not-exist');
+        |                                            ^
+      2 |
+      3 | test('never reached', () => {
+      4 |   expect(missing).toBeDefined();
+
+      at Resolver._throwModNotFoundError (node_modules/.pnpm/jest-resolve@29.7.0/node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (scenarios/runtime-error/broken.test.js:1:44)
+
+Skipped / todo (3):
+  ○ pending scenarios/mixed/mixed.test.js › mixed statuses › skipped on purpose
+  ✎ todo scenarios/mixed/mixed.test.js › mixed statuses › write a test for negative numbers
+  ○ pending scenarios/mixed/mixed.test.js › skipped block › never runs
+
+--- stderr not recognised as reporter output (verbatim, 24 line(s)) ---
+PASS scenarios/console/console.test.js   [suite header, shown for context]
+  ● Console
+
+    console.log
+      custom log line — 日本語 ✓
+
+      at Object.log (scenarios/console/console.test.js:4:11)
+
+    console.warn
+      DeprecationWarning: this API will be removed
+
+      3 | test('logs and warns', () => {
+      4 |   console.log('custom log line — 日本語 ✓');
+    > 5 |   console.warn('DeprecationWarning: this API will be removed');
+        |           ^
+      6 |   console.error('something looked wrong but the test continues');
+      7 |   expect(sum(1, 1)).toBe(2);
+      8 | });
+
+      at Object.warn (scenarios/console/console.test.js:5:11)
+
+    console.error
+      something looked wrong but the test continues
+
+      4 |   console.log('custom log line — 日本語 ✓');
+      5 |   console.warn('DeprecationWarning: this API will be removed');
+    > 6 |   console.error('something looked wrong but the test continues');
+        |           ^
+      7 |   expect(sum(1, 1)).toBe(2);
+      8 | });
+      9 |
+
+      at Object.error (scenarios/console/console.test.js:6:11)
+
+Omitted (nothing re-run): agent-efficiency expand ae_20260928162926_a6505cee --run-dir <RUN>/all --part <part>
+  passed: names of 143 passed test(s)
+  stderr --raw: 13 reporter line(s) verified against the JSON result; 3 failure block(s) identical to the messages above
+  failures: raw failureMessages (unfiltered stacks) and failureDetails
+  result: per-test durations, full JSON result

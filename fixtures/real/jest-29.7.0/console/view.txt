@@ -1,0 +1,40 @@
+[agent-efficiency jest-v1 (experimental) · selective view, not lossless · artifact ae_20260928162925_fad1de19]
+$ jest scenarios/console  (cwd examples/jest-sample · started 2026-09-28T16:29:25.310Z · 0.27s · exit 0 · not timed out · run complete)
+Suites: 1 passed, 1 total · Tests: 31 passed, 31 total
+
+--- stderr not recognised as reporter output (verbatim, 23 line(s)) ---
+  console.log
+    custom log line — 日本語 ✓
+
+      at Object.log (scenarios/console/console.test.js:4:11)
+
+  console.warn
+    DeprecationWarning: this API will be removed
+
+      3 | test('logs and warns', () => {
+      4 |   console.log('custom log line — 日本語 ✓');
+    > 5 |   console.warn('DeprecationWarning: this API will be removed');
+        |           ^
+      6 |   console.error('something looked wrong but the test continues');
+      7 |   expect(sum(1, 1)).toBe(2);
+      8 | });
+
+      at Object.warn (scenarios/console/console.test.js:5:11)
+
+  console.error
+    something looked wrong but the test continues
+
+      4 |   console.log('custom log line — 日本語 ✓');
+      5 |   console.warn('DeprecationWarning: this API will be removed');
+    > 6 |   console.error('something looked wrong but the test continues');
+        |           ^
+      7 |   expect(sum(1, 1)).toBe(2);
+      8 | });
+      9 |
+
+      at Object.error (scenarios/console/console.test.js:6:11)
+
+Omitted (nothing re-run): agent-efficiency expand ae_20260928162925_fad1de19 --run-dir <RUN>/console --part <part>
+  passed: names of 31 passed test(s)
+  stderr --raw: 38 reporter line(s) verified against the JSON result
+  result: per-test durations, full JSON result

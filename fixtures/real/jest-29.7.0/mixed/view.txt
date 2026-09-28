@@ -1,0 +1,13 @@
+[agent-efficiency jest-v1 (experimental) · selective view, not lossless · artifact ae_20260928162924_f33585aa]
+$ jest scenarios/mixed --ci  (cwd examples/jest-sample · started 2026-09-28T16:29:24.944Z · 0.26s · exit 0 · not timed out · run complete)
+Suites: 1 passed, 1 total · Tests: 2 skipped, 1 todo, 3 passed, 6 total · Snapshots: 2 passed, 2 total
+
+Skipped / todo (3):
+  ○ pending scenarios/mixed/mixed.test.js › mixed statuses › skipped on purpose
+  ✎ todo scenarios/mixed/mixed.test.js › mixed statuses › write a test for negative numbers
+  ○ pending scenarios/mixed/mixed.test.js › skipped block › never runs
+
+Omitted (nothing re-run): agent-efficiency expand ae_20260928162924_f33585aa --run-dir <RUN>/mixed --part <part>
+  passed: names of 3 passed test(s)
+  stderr --raw: 15 reporter line(s) verified against the JSON result
+  result: per-test durations, full JSON result

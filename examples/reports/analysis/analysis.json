@@ -1,0 +1,171 @@
+{
+  "report_type": "agent-efficiency/analysis",
+  "report_version": 1,
+  "generated_at": "2026-09-28T14:02:05.702Z",
+  "tool_version": "0.1.0",
+  "input": {
+    "input_id": "session.canonical.jsonl",
+    "adapter": "canonical",
+    "adapter_status": "supported",
+    "strict": false
+  },
+  "coverage": {
+    "input_id": "session.canonical.jsonl",
+    "total_lines": 19,
+    "parsed_lines": 19,
+    "ignored_lines": 0,
+    "skipped": [],
+    "partial": false
+  },
+  "adapter_warnings": [],
+  "rule_config": {
+    "R001": {
+      "window_calls": 20,
+      "min_repeats": 3
+    },
+    "R002": {
+      "window_calls": 20,
+      "min_repeats": 3
+    },
+    "R003": {
+      "window_calls": 10,
+      "min_repeats": 3
+    },
+    "R004": {
+      "window_calls": 10
+    }
+  },
+  "streams_analysed": 2,
+  "findings": [
+    {
+      "id": "F0001",
+      "session_id": "s1",
+      "stream_id": "main",
+      "context_epoch": "e0",
+      "rule": "R001",
+      "title": "Repeated identical read",
+      "subject": "src/config.ts",
+      "occurrences": 3,
+      "event_ids": [
+        "c1",
+        "r1",
+        "c3",
+        "r3",
+        "c5",
+        "r5"
+      ],
+      "source_refs": [
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 2
+        },
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 3
+        },
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 7
+        },
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 8
+        },
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 11
+        },
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 12
+        }
+      ],
+      "confidence": "medium",
+      "causality": "n/a",
+      "limitations": [
+        "A repeated read can be a legitimate re-check (e.g. before editing); this is a candidate, not proof of waste.",
+        "No file version hash; unobserved external changes cannot be ruled out."
+      ],
+      "suggestion": "Keep the needed excerpt in working notes or read a narrower range; re-read only after a change or when re-verifying."
+    },
+    {
+      "id": "F0002",
+      "session_id": "s1",
+      "stream_id": "main",
+      "context_epoch": "e0",
+      "rule": "R003",
+      "title": "Retrying a command that fails for an environment reason",
+      "subject": "pnpm test",
+      "occurrences": 3,
+      "event_ids": [
+        "c2",
+        "r2",
+        "c4",
+        "r4",
+        "c6",
+        "r6"
+      ],
+      "source_refs": [
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 5
+        },
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 6
+        },
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 9
+        },
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 10
+        },
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 13
+        },
+        {
+          "input_id": "session.canonical.jsonl",
+          "line": 14
+        }
+      ],
+      "confidence": "high",
+      "causality": "n/a",
+      "limitations": [
+        "Grouped by cwd and command.",
+        "Environment changes made outside observed tools cannot be seen."
+      ],
+      "suggestion": "Check the prerequisite (e.g. is the executable installed / on PATH?) before retrying; error kind: command_not_found."
+    }
+  ],
+  "not_evaluable": [],
+  "usage": {
+    "completeness": "complete",
+    "requests_counted": 2,
+    "duplicate_request_ids": [],
+    "conflicting_request_ids": [],
+    "incomplete_requests": [],
+    "t_task": 36930,
+    "observed_totals": {
+      "input_uncached": 2100,
+      "input_cache_read": 14000,
+      "input_cache_write": 20200,
+      "output_total": 630
+    },
+    "reasoning_included_in_output": null,
+    "per_stream": {
+      "main": {
+        "requests": 2,
+        "observed_total": 36930
+      }
+    },
+    "gaps": []
+  },
+  "disclaimers": [
+    "Findings are candidate waste, not proof; none of them blocks the agent.",
+    "Report content is masked on a best-effort basis; masking is not complete protection.",
+    "Token totals describe the observed log only; they are not a measure of savings."
+  ]
+}

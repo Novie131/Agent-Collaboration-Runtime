@@ -1,0 +1,10 @@
+{
+  "host": { "name": "claude-code", "version": "<claude --version>" },
+  "model": { "id": "<exact model id>", "reasoning_effort": "<fixed effort, same for all groups>" },
+  "agent_version": "<same as host version unless different>",
+  "permissions": "<permission mode, same for all groups>",
+  "max_task_minutes": 30,
+  "stop_condition": "agent reports done, or max_task_minutes reached",
+  "hardware": "<machine model / CPU>",
+  "dependencies_digest": "<sha256 of lockfile(s) at base_commit>"
+}
