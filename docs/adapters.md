@@ -29,6 +29,24 @@ node dist/cli.js analyze <transcript.jsonl> --adapter claude-code --strict --out
 node scripts/deidentify-claude-transcript.mjs <transcript.jsonl> fixtures/real/claude-code-<版本>/session.deidentified.jsonl --project-root . --max-lines 400
 ```
 
+### Headless 用量對帳（2026-09-29，第 1 次）
+
+以 `claude -p --output-format json`（CLI 2.1.278、`acceptEdits` 權限模式、預設模型）在 `examples/jest-sample` 暫存副本修一個植入的 bug，再用 `scripts/reconcile-headless-usage.mjs` 對帳：
+
+| 來源 | 總 Token |
+| --- | ---: |
+| transcript 逐次請求加總（7 個請求，主模型） | 238,937 |
+| headless 結果 `usage` | 238,937（與 transcript 完全相同，只含主模型） |
+| headless 結果 `modelUsage`（依模型分列） | 239,928 |
+| 差額 | 991（另一個小模型：973 input＋18 output，即 `ai-title` 標題生成） |
+
+發現：
+
+- transcript 逐次 usage 與 headless `usage` 完全一致；缺的只有標題生成呼叫。
+- `modelUsage` 涵蓋標題生成。headless session 的 transcript 最後有一筆 `cost-state` 項目，內含相同的 `modelUsage`。這是目前唯一看到的**完整**來源。本次開發用的互動式 session 沒有這筆項目。
+- 本次使用 `acceptEdits`，沒有權限 classifier 呼叫；classifier 是否計入 `modelUsage` **尚未驗證**。
+- `cost-state.modelUsage` 另有 `thinkingTokens` 欄位；主模型的 `outputTokens` 與 transcript 的 `output_tokens` 加總相同，推測 thinking 已含在 output 內，不可重複加計（尚需更多樣本確認）。
+
 要把狀態提升為 supported，至少需要：含子 Agent 與 compaction 的真實樣本、多個版本，以及找到能涵蓋上述隱藏呼叫的完整 usage 來源（例如 headless 模式的 JSON 結果；**未驗證**）。
 
 ## codex
