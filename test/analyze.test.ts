@@ -2,9 +2,9 @@ import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { InvalidInputError } from '../src/adapters/types.js';
-import { analyze } from '../src/observe/analyze.js';
-import { OutputExistsError } from '../src/report/write.js';
+import { InvalidInputError } from '@acr/transcripts/types.js';
+import { analyze } from '@acr/telemetry/analyze.js';
+import { OutputExistsError } from '@acr/platform/write.js';
 import { EventBuilder } from './helpers/events.js';
 
 let dir: string;

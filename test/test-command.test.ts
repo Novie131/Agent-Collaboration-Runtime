@@ -4,12 +4,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Writable } from 'node:stream';
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { expandArtifact } from '../src/artifacts/expand.js';
-import { RunManifest } from '../src/artifacts/manifest.js';
-import { ArtifactError } from '../src/artifacts/store.js';
-import { JEST_V1 } from '../src/policies/registry.js';
-import { runJest } from '../src/runner/jest.js';
-import { runTestCommand, WRAPPER_EXIT, type TestCommandOptions } from '../src/runner/test-command.js';
+import { expandArtifact } from '@acr/artifacts/expand.js';
+import { RunManifest } from '@acr/artifacts/manifest.js';
+import { ArtifactError } from '@acr/artifacts/store.js';
+import { JEST_V1 } from '@acr/runner/policy-registry.js';
+import { runJest } from '@acr/runner/jest.js';
+import { runTestCommand, WRAPPER_EXIT, type TestCommandOptions } from '@acr/runner/test-command.js';
 import { makeResult, makeStderr } from './helpers/jest.js';
 
 const FAKE_JEST = `

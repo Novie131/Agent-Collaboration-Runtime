@@ -8,4 +8,5 @@ runs/
 run-*/
 report/
 comparison/
-.agent-efficiency/
+.agent-runtime/*
+!.agent-runtime/config.json

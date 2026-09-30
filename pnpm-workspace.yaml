@@ -1,3 +1,10 @@
+packages:
+  - packages/*
+  - apps/*
+
 allowBuilds:
   # esbuild's postinstall only verifies its platform binary; vitest works without it.
   esbuild: false
+
+minimumReleaseAgeExclude:
+  - '@modelcontextprotocol/sdk@1.31.0'

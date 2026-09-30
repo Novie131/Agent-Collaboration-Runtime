@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Captures REAL Jest output (from the synthetic test code in examples/jest-sample)
-// through `agent-efficiency test --mode shadow`, de-identifies paths and stores it
+// through `acr test --mode shadow`, de-identifies paths and stores it
 // under fixtures/real/jest-<version>/<scenario>/. Requires `pnpm build` and an
 // installed examples/jest-sample (pnpm --dir examples/jest-sample install).
 import { spawnSync } from 'node:child_process';

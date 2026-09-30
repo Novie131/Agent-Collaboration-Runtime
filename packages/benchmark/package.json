@@ -1,0 +1,25 @@
+{
+  "name": "@acr/benchmark",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Experiment manifests and paired statistical quality/token gates.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./*.js": {
+      "acr-source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@acr/platform": "workspace:*",
+    "@acr/protocol": "workspace:*",
+    "@acr/security": "workspace:*",
+    "@acr/transcripts": "workspace:*",
+    "zod": "^3.23.8"
+  }
+}

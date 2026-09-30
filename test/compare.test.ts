@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { compareExperiment } from '../src/evaluate/compare.js';
-import { clusterBootstrapReduction, tangoLowerBound, tangoScore } from '../src/evaluate/stats.js';
-import { ExperimentManifest } from '../src/schema/evaluation.js';
+import { compareExperiment } from '@acr/benchmark/compare.js';
+import { clusterBootstrapReduction, tangoLowerBound, tangoScore } from '@acr/benchmark/stats.js';
+import { ExperimentManifest } from '@acr/benchmark/evaluation.js';
 import { experiment, runRec, task } from './helpers/experiment.js';
 
 const ids = (n: number) => Array.from({ length: n }, (_, i) => `t${i + 1}`);

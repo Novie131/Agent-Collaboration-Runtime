@@ -1,5 +1,5 @@
 {
-  "experiment_type": "agent-efficiency/experiment",
+  "experiment_type": "experiment",
   "experiment_version": 1,
   "experiment_id": "synthetic-demo-001",
   "synthetic": true,

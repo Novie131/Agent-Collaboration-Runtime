@@ -1,0 +1,26 @@
+{
+  "name": "@acr/core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hub domain: tasks, state machine, risk, limits, context broker, verification, metrics. Offline.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./*.js": {
+      "acr-source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@acr/platform": "workspace:*",
+    "@acr/protocol": "workspace:*",
+    "@acr/security": "workspace:*",
+    "@acr/storage": "workspace:*",
+    "@acr/transcripts": "workspace:*",
+    "zod": "^3.23.8"
+  }
+}

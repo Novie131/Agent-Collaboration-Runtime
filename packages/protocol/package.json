@@ -1,0 +1,21 @@
+{
+  "name": "@acr/protocol",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Versioned zod schemas (TranscriptEvent; RuntimeEvent and task payloads to come).",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./*.js": {
+      "acr-source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
+}

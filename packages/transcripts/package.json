@@ -1,0 +1,21 @@
+{
+  "name": "@acr/transcripts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Offline parsing of agent session transcripts and usage normalisation.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./*.js": {
+      "acr-source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@acr/protocol": "workspace:*"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@acr/cli",
+  "version": "0.1.0",
+  "private": true,
+  "description": "acr command-line interface.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./*.js": {
+      "acr-source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "bin": {
+    "acr": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@acr/artifacts": "workspace:*",
+    "@acr/benchmark": "workspace:*",
+    "@acr/core": "workspace:*",
+    "@acr/mcp": "workspace:*",
+    "@acr/platform": "workspace:*",
+    "@acr/protocol": "workspace:*",
+    "@acr/runner": "workspace:*",
+    "@acr/telemetry": "workspace:*",
+    "@acr/transcripts": "workspace:*",
+    "commander": "^12.1.0"
+  }
+}

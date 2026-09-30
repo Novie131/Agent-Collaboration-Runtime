@@ -1,0 +1,21 @@
+{
+  "name": "@acr/git",
+  "version": "0.1.0",
+  "private": true,
+  "description": "(edge) Read-only git access for result verification.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./*.js": {
+      "acr-source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@acr/core": "workspace:*"
+  }
+}

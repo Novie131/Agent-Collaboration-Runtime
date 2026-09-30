@@ -1,16 +1,17 @@
+import { fileURLToPath } from 'node:url';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { evaluatePreRenderGate } from '../src/policies/jest-gate.js';
-import { JEST_V1 } from '../src/policies/registry.js';
-import { countProblems, parseJestResult } from '../src/renderers/jest-result.js';
-import { renderJestView } from '../src/renderers/jest-view.js';
+import { evaluatePreRenderGate } from '@acr/runner/jest-gate.js';
+import { JEST_V1 } from '@acr/runner/policy-registry.js';
+import { countProblems, parseJestResult } from '@acr/compression/jest-result.js';
+import { renderJestView } from '@acr/compression/jest-view.js';
 
 /**
  * Real Jest output captured by scripts/capture-jest-fixtures.mjs. These tests are
  * what "verified Jest version" in the jest-v1 policy refers to.
  */
-const REAL = new URL('../fixtures/real/', import.meta.url).pathname;
+const REAL = fileURLToPath(new URL('../fixtures/real/', import.meta.url));
 const ROOT = '/ROOT';
 const RUN = '/RUN';
 

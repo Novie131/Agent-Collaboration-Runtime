@@ -1,0 +1,19 @@
+{
+  "name": "@acr/security",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Redaction and safe display of paths and text.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./*.js": {
+      "acr-source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {}
+}

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { evaluatePreRenderGate } from '../src/policies/jest-gate.js';
-import { JEST_V1 } from '../src/policies/registry.js';
-import { parseJestResult } from '../src/renderers/jest-result.js';
-import { renderJestView } from '../src/renderers/jest-view.js';
+import { evaluatePreRenderGate } from '@acr/runner/jest-gate.js';
+import { JEST_V1 } from '@acr/runner/policy-registry.js';
+import { parseJestResult } from '@acr/compression/jest-result.js';
+import { renderJestView } from '@acr/compression/jest-view.js';
 import { makeResult, makeStderr, ROOT } from './helpers/jest.js';
 
 const policy = { ...JEST_V1, verified_jest_majors: [29], verified_jest_versions: ['29.7.0'] };
