@@ -1,0 +1,155 @@
+FAIL scenarios/fail/fail.test.js
+  intentional failures
+    ✕ number mismatch (1 ms)
+    ✕ object diff (1 ms)
+    ✕ unicode multi-line string diff (1 ms)
+    ✕ thrown error with stack
+    ✓ still passes
+
+  ● intentional failures › number mismatch
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 2
+
+      3 | describe('intentional failures', () => {
+      4 |   test('number mismatch', () => {
+    > 5 |     expect(sum(1, 1)).toBe(3);
+        |                       ^
+      6 |   });
+      7 |
+      8 |   test('object diff', () => {
+
+      at Object.toBe (scenarios/fail/fail.test.js:5:23)
+
+  ● intentional failures › object diff
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+        "id": 1,
+    -   "name": "Ada Lovelace",
+    +   "name": "Ada",
+        "tags": Array [
+          "x",
+    -     "z",
+    +     "y",
+        ],
+      }
+
+       7 |
+       8 |   test('object diff', () => {
+    >  9 |     expect({ id: 1, name: 'Ada', tags: ['x', 'y'] }).toEqual({ id: 1, name: 'Ada Lovelace', tags: ['x', 'z'] });
+         |                                                      ^
+      10 |   });
+      11 |
+      12 |   test('unicode multi-line string diff', () => {
+
+      at Object.toEqual (scenarios/fail/fail.test.js:9:54)
+
+  ● intentional failures › unicode multi-line string diff
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      第一行
+    - creme-brulee
+    + creme
+      last ✓
+
+      11 |
+      12 |   test('unicode multi-line string diff', () => {
+    > 13 |     expect(`第一行\n${slugify('Crème')}\nlast ✓`).toBe('第一行\ncreme-brulee\nlast ✓');
+         |                                                ^
+      14 |   });
+      15 |
+      16 |   test('thrown error with stack', () => {
+
+      at Object.toBe (scenarios/fail/fail.test.js:13:48)
+
+  ● intentional failures › thrown error with stack
+
+    TypeError: cannot read property "x" of undefined (simulated)
+
+      16 |   test('thrown error with stack', () => {
+      17 |     function deep() {
+    > 18 |       throw new TypeError('cannot read property "x" of undefined (simulated)');
+         |             ^
+      19 |     }
+      20 |     deep();
+      21 |   });
+
+      at deep (scenarios/fail/fail.test.js:18:13)
+      at Object.deep (scenarios/fail/fail.test.js:20:5)
+
+FAIL scenarios/fail/sum-extra.test.js
+  ✓ sum(0, 0) is identity
+  ✓ sum(1, 0) is identity (1 ms)
+  ✓ sum(2, 0) is identity
+  ✓ sum(3, 0) is identity
+  ✓ sum(4, 0) is identity
+  ✓ sum(5, 0) is identity
+  ✓ sum(6, 0) is identity
+  ✓ sum(7, 0) is identity
+  ✓ sum(8, 0) is identity
+  ✓ sum(9, 0) is identity
+  ✓ sum(10, 0) is identity
+  ✓ sum(11, 0) is identity
+  ✓ sum(12, 0) is identity
+  ✓ sum(13, 0) is identity
+  ✓ sum(14, 0) is identity
+  ✓ sum(15, 0) is identity
+  ✓ sum(16, 0) is identity
+  ✓ sum(17, 0) is identity
+  ✓ sum(18, 0) is identity
+  ✓ sum(19, 0) is identity
+  ✓ sum(20, 0) is identity
+  ✓ sum(21, 0) is identity
+  ✓ sum(22, 0) is identity
+  ✓ sum(23, 0) is identity
+  ✓ sum(24, 0) is identity
+  ✓ sum(25, 0) is identity
+  ✓ sum(26, 0) is identity
+  ✓ sum(27, 0) is identity
+  ✓ sum(28, 0) is identity
+  ✓ sum(29, 0) is identity
+  ✓ sum(30, 0) is identity
+  ✓ sum(31, 0) is identity
+  ✓ sum(32, 0) is identity
+  ✓ sum(33, 0) is identity
+  ✓ sum(34, 0) is identity
+  ✓ sum(35, 0) is identity
+  ✓ sum(36, 0) is identity
+  ✓ sum(37, 0) is identity
+  ✓ sum(38, 0) is identity
+  ✓ sum(39, 0) is identity
+  ✕ off by one
+
+  ● off by one
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 21
+    Received: 20
+
+       6 |
+       7 | test('off by one', () => {
+    >  8 |   expect(sum(10, 10)).toBe(21);
+         |                       ^
+       9 | });
+      10 |
+
+      at Object.toBe (scenarios/fail/sum-extra.test.js:8:23)
+
+Test Suites: 2 failed, 2 total
+Tests:       5 failed, 41 passed, 46 total
+Snapshots:   0 total
+Time:        0.142 s, estimated 1 s
+Ran all test suites matching /scenarios\/fail/i.
+Test results written to: ../../../../../..<RUN>/fail-verbose/jest-result.json

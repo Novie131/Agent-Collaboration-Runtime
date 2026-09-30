@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { cumulativeToDeltas, splitInclusiveInput, summarizeUsage } from '../src/observe/usage.js';
-import type { UsageEvent } from '../src/schema/events.js';
+import { cumulativeToDeltas, splitInclusiveInput, summarizeUsage } from '@acr/transcripts/usage.js';
+import type { UsageEvent } from '@acr/protocol/transcript-events.js';
 import { EventBuilder } from './helpers/events.js';
 
 const counts = (u: number, r: number, w: number, o: number) => ({ input_uncached: u, input_cache_read: r, input_cache_write: w, output_total: o });

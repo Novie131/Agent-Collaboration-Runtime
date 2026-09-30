@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds a RunRecord (see src/schema/evaluation.ts) for `agent-efficiency compare`
+// Builds a RunRecord (see packages/benchmark/src/evaluation.ts) for `acr compare`
 // from one Claude Code transcript plus a verifier result written by an EXTERNAL
 // verifier. Requires `pnpm build`. Nothing is executed from the transcript.
 //
@@ -8,8 +8,8 @@
 //   --settings settings.json --verifier verifier-result.json [--policy jest-v1 --policy-hash sha256:...] \
 //   [--cache-state cold] [--timed-out] > run.json
 import { readFileSync } from 'node:fs';
-import { claudeCodeAdapter } from '../dist/adapters/claude-code.js';
-import { RunRecord } from '../dist/schema/evaluation.js';
+import { claudeCodeAdapter } from '@acr/transcripts/claude-code.js';
+import { RunRecord } from '@acr/benchmark/evaluation.js';
 
 const [, , transcript, ...rest] = process.argv;
 const opt = (n) => {
@@ -57,8 +57,8 @@ const record = {
   tool_output_bytes: outputBytes,
   ...(times.length > 1 ? { duration_ms: Date.parse(times[times.length - 1]) - Date.parse(times[0]) } : {}),
   adoption: {
-    wrapper_invocations: calls.filter((c) => /\bagent-efficiency\s+test\b/.test(cmd(c))).length,
-    expand_invocations: calls.filter((c) => /\bagent-efficiency\s+expand\b/.test(cmd(c))).length,
+    wrapper_invocations: calls.filter((c) => /\b(?:acr|agent-efficiency)\s+test\b/.test(cmd(c))).length,
+    expand_invocations: calls.filter((c) => /\b(?:acr|agent-efficiency)\s+expand\b/.test(cmd(c))).length,
   },
 };
 const checked = RunRecord.safeParse(record);

@@ -1,0 +1,763 @@
+PASS scenarios/generated-many/module-119.test.js
+  module 119
+    ✓ adds (2 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-052.test.js
+  module 052
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-114.test.js
+  module 114
+    ✓ adds (6 ms)
+    ✓ identity
+    ✓ commutes
+
+FAIL scenarios/generated-many/module-057.test.js
+  module 057
+    ✕ adds (15 ms)
+    ✓ identity (1 ms)
+    ✓ commutes
+
+  ● module 057 › adds
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 59
+    Received: 58
+
+      1 | const { sum } = require('../../src/math');
+      2 | describe('module 057', () => {
+    > 3 |   test('adds', () => expect(sum(57, 1)).toBe(59));
+        |                                         ^
+      4 |   test('identity', () => expect(sum(57, 0)).toBe(57));
+      5 |   test('commutes', () => expect(sum(1, 57)).toBe(sum(57, 1)));
+      6 | });
+
+      at Object.toBe (scenarios/generated-many/module-057.test.js:3:41)
+
+PASS scenarios/generated-many/module-115.test.js
+  module 115
+    ✓ adds (2 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-085.test.js
+  module 085
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-037.test.js
+  module 037
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-116.test.js
+  module 116
+    ✓ adds (5 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-110.test.js
+  module 110
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-113.test.js
+  module 113
+    ✓ adds (1 ms)
+    ✓ identity (2 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-097.test.js
+  module 097
+    ✓ adds
+    ✓ identity (3 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-108.test.js
+  module 108
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-024.test.js
+  module 024
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-039.test.js
+  module 039
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-109.test.js
+  module 109
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-118.test.js
+  module 118
+    ✓ adds (2 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-059.test.js
+  module 059
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-073.test.js
+  module 073
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-053.test.js
+  module 053
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-063.test.js
+  module 063
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-051.test.js
+  module 051
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-093.test.js
+  module 093
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-101.test.js
+  module 101
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-081.test.js
+  module 081
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-067.test.js
+  module 067
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-080.test.js
+  module 080
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-055.test.js
+  module 055
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-050.test.js
+  module 050
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-027.test.js
+  module 027
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-100.test.js
+  module 100
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-003.test.js
+  module 003
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-079.test.js
+  module 079
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-035.test.js
+  module 035
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-007.test.js
+  module 007
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-111.test.js
+  module 111
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-002.test.js
+  module 002
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-043.test.js
+  module 043
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-065.test.js
+  module 065
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-054.test.js
+  module 054
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-028.test.js
+  module 028
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-061.test.js
+  module 061
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-117.test.js
+  module 117
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-046.test.js
+  module 046
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-048.test.js
+  module 048
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-020.test.js
+  module 020
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-106.test.js
+  module 106
+    ✓ adds
+    ✓ identity (2 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-104.test.js
+  module 104
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-102.test.js
+  module 102
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-095.test.js
+  module 095
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-083.test.js
+  module 083
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-112.test.js
+  module 112
+    ✓ adds
+    ✓ identity (1 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-090.test.js
+  module 090
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-023.test.js
+  module 023
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-074.test.js
+  module 074
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-092.test.js
+  module 092
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-009.test.js
+  module 009
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-103.test.js
+  module 103
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-068.test.js
+  module 068
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-072.test.js
+  module 072
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-060.test.js
+  module 060
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-001.test.js
+  module 001
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-030.test.js
+  module 030
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-012.test.js
+  module 012
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-062.test.js
+  module 062
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-045.test.js
+  module 045
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-089.test.js
+  module 089
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-015.test.js
+  module 015
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-008.test.js
+  module 008
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-033.test.js
+  module 033
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-087.test.js
+  module 087
+    ✓ adds
+    ✓ identity (1 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-084.test.js
+  module 084
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-082.test.js
+  module 082
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-058.test.js
+  module 058
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-047.test.js
+  module 047
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-099.test.js
+  module 099
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-091.test.js
+  module 091
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-000.test.js
+  module 000
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-088.test.js
+  module 088
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-071.test.js
+  module 071
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-064.test.js
+  module 064
+    ✓ adds (3 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-049.test.js
+  module 049
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-086.test.js
+  module 086
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-041.test.js
+  module 041
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-038.test.js
+  module 038
+    ✓ adds
+    ✓ identity (2 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-034.test.js
+  module 034
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-022.test.js
+  module 022
+    ✓ adds
+    ✓ identity (1 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-006.test.js
+  module 006
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-076.test.js
+  module 076
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-107.test.js
+  module 107
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-105.test.js
+  module 105
+    ✓ adds
+    ✓ identity (2 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-032.test.js
+  module 032
+    ✓ adds
+    ✓ identity (1 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-070.test.js
+  module 070
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-040.test.js
+  module 040
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-042.test.js
+  module 042
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-011.test.js
+  module 011
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-005.test.js
+  module 005
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-010.test.js
+  module 010
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-021.test.js
+  module 021
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-018.test.js
+  module 018
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-077.test.js
+  module 077
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-056.test.js
+  module 056
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-096.test.js
+  module 096
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-004.test.js
+  module 004
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-069.test.js
+  module 069
+    ✓ adds (1 ms)
+    ✓ identity (2 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-078.test.js
+  module 078
+    ✓ adds
+    ✓ identity (1 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-031.test.js
+  module 031
+    ✓ adds
+    ✓ identity (1 ms)
+    ✓ commutes
+
+PASS scenarios/generated-many/module-036.test.js
+  module 036
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-017.test.js
+  module 017
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-044.test.js
+  module 044
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-016.test.js
+  module 016
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-019.test.js
+  module 019
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-098.test.js
+  module 098
+    ✓ adds
+    ✓ identity
+    ✓ commutes (1 ms)
+
+PASS scenarios/generated-many/module-066.test.js
+  module 066
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-013.test.js
+  module 013
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-026.test.js
+  module 026
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-025.test.js
+  module 025
+    ✓ adds (1 ms)
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-014.test.js
+  module 014
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-075.test.js
+  module 075
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-029.test.js
+  module 029
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+PASS scenarios/generated-many/module-094.test.js
+  module 094
+    ✓ adds
+    ✓ identity
+    ✓ commutes
+
+Summary of all failing tests
+FAIL scenarios/generated-many/module-057.test.js
+  ● module 057 › adds
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 59
+    Received: 58
+
+      1 | const { sum } = require('../../src/math');
+      2 | describe('module 057', () => {
+    > 3 |   test('adds', () => expect(sum(57, 1)).toBe(59));
+        |                                         ^
+      4 |   test('identity', () => expect(sum(57, 0)).toBe(57));
+      5 |   test('commutes', () => expect(sum(1, 57)).toBe(sum(57, 1)));
+      6 | });
+
+      at Object.toBe (scenarios/generated-many/module-057.test.js:3:41)
+
+
+Test Suites: 1 failed, 119 passed, 120 total
+Tests:       1 failed, 359 passed, 360 total
+Snapshots:   0 total
+Time:        0.783 s, estimated 1 s
+Ran all test suites matching /scenarios\/generated-many/i.
+Test results written to: ../../../../../..<RUN>/many-suites-verbose/jest-result.json

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { checkJestArgs } from '../src/runner/jest-args.js';
-import { JEST_V1, policyHash } from '../src/policies/registry.js';
-import { canTransition, effectiveStatus, type ValidationRecord, type ValidationScope } from '../src/policies/state.js';
-import { displayPath, mdCodeBlock, mdInline, redact } from '../src/privacy/redact.js';
+import { checkJestArgs } from '@acr/runner/jest-args.js';
+import { JEST_V1, policyHash } from '@acr/runner/policy-registry.js';
+import { canTransition, effectiveStatus, type ValidationRecord, type ValidationScope } from '@acr/runner/policy-state.js';
+import { displayPath, mdCodeBlock, mdInline, redact } from '@acr/security/redact.js';
 
 const scope: ValidationScope = {
   policy_hash: policyHash(JEST_V1),

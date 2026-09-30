@@ -1,0 +1,20 @@
+FAIL scenarios/runtime-error/broken.test.js
+  ● Test suite failed to run
+
+    Cannot find module './does-not-exist' from 'scenarios/runtime-error/broken.test.js'
+
+    > 1 | const missing = require('./does-not-exist');
+        |                                            ^
+      2 |
+      3 | test('never reached', () => {
+      4 |   expect(missing).toBeDefined();
+
+      at Resolver._throwModNotFoundError (node_modules/.pnpm/jest-resolve@29.7.0/node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.<anonymous> (scenarios/runtime-error/broken.test.js:1:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.11 s
+Ran all test suites matching /scenarios\/runtime-error/i.
+Test results written to: ../../../../../..<RUN>/runtime-error/jest-result.json

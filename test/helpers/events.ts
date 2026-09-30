@@ -1,4 +1,4 @@
-import type { CanonicalEvent, ToolCategory } from '../../src/schema/events.js';
+import type { CanonicalEvent, ToolCategory } from '@acr/protocol/transcript-events.js';
 
 /** Builds canonical event sequences for rule tests (synthetic). */
 export class EventBuilder {

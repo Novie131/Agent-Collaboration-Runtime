@@ -1,0 +1,25 @@
+{
+  "name": "@acr/telemetry",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Waste diagnostics (R001-R004) and analysis reports.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./*.js": {
+      "acr-source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@acr/platform": "workspace:*",
+    "@acr/protocol": "workspace:*",
+    "@acr/security": "workspace:*",
+    "@acr/transcripts": "workspace:*",
+    "zod": "^3.23.8"
+  }
+}

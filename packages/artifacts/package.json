@@ -1,0 +1,23 @@
+{
+  "name": "@acr/artifacts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Artifact store: manifests, hashing, safe range reads, expand, prune.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./*.js": {
+      "acr-source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@acr/compression": "workspace:*",
+    "@acr/security": "workspace:*",
+    "zod": "^3.23.8"
+  }
+}

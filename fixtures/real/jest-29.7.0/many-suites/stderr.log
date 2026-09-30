@@ -1,0 +1,164 @@
+PASS scenarios/generated-many/module-118.test.js
+PASS scenarios/generated-many/module-116.test.js
+PASS scenarios/generated-many/module-119.test.js
+PASS scenarios/generated-many/module-114.test.js
+PASS scenarios/generated-many/module-115.test.js
+PASS scenarios/generated-many/module-110.test.js
+PASS scenarios/generated-many/module-021.test.js
+PASS scenarios/generated-many/module-095.test.js
+FAIL scenarios/generated-many/module-057.test.js
+  ● module 057 › adds
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 59
+    Received: 58
+
+      1 | const { sum } = require('../../src/math');
+      2 | describe('module 057', () => {
+    > 3 |   test('adds', () => expect(sum(57, 1)).toBe(59));
+        |                                         ^
+      4 |   test('identity', () => expect(sum(57, 0)).toBe(57));
+      5 |   test('commutes', () => expect(sum(1, 57)).toBe(sum(57, 1)));
+      6 | });
+
+      at Object.toBe (scenarios/generated-many/module-057.test.js:3:41)
+
+PASS scenarios/generated-many/module-015.test.js
+PASS scenarios/generated-many/module-008.test.js
+PASS scenarios/generated-many/module-001.test.js
+PASS scenarios/generated-many/module-108.test.js
+PASS scenarios/generated-many/module-104.test.js
+PASS scenarios/generated-many/module-100.test.js
+PASS scenarios/generated-many/module-093.test.js
+PASS scenarios/generated-many/module-089.test.js
+PASS scenarios/generated-many/module-024.test.js
+PASS scenarios/generated-many/module-011.test.js
+PASS scenarios/generated-many/module-113.test.js
+PASS scenarios/generated-many/module-085.test.js
+PASS scenarios/generated-many/module-005.test.js
+PASS scenarios/generated-many/module-112.test.js
+PASS scenarios/generated-many/module-083.test.js
+PASS scenarios/generated-many/module-081.test.js
+PASS scenarios/generated-many/module-103.test.js
+PASS scenarios/generated-many/module-061.test.js
+PASS scenarios/generated-many/module-097.test.js
+PASS scenarios/generated-many/module-035.test.js
+PASS scenarios/generated-many/module-078.test.js
+PASS scenarios/generated-many/module-072.test.js
+PASS scenarios/generated-many/module-066.test.js
+PASS scenarios/generated-many/module-056.test.js
+PASS scenarios/generated-many/module-065.test.js
+PASS scenarios/generated-many/module-048.test.js
+PASS scenarios/generated-many/module-063.test.js
+PASS scenarios/generated-many/module-007.test.js
+PASS scenarios/generated-many/module-107.test.js
+PASS scenarios/generated-many/module-068.test.js
+PASS scenarios/generated-many/module-030.test.js
+PASS scenarios/generated-many/module-012.test.js
+PASS scenarios/generated-many/module-105.test.js
+PASS scenarios/generated-many/module-075.test.js
+PASS scenarios/generated-many/module-080.test.js
+PASS scenarios/generated-many/module-088.test.js
+PASS scenarios/generated-many/module-079.test.js
+PASS scenarios/generated-many/module-016.test.js
+PASS scenarios/generated-many/module-003.test.js
+PASS scenarios/generated-many/module-055.test.js
+PASS scenarios/generated-many/module-109.test.js
+PASS scenarios/generated-many/module-053.test.js
+PASS scenarios/generated-many/module-051.test.js
+PASS scenarios/generated-many/module-054.test.js
+PASS scenarios/generated-many/module-043.test.js
+PASS scenarios/generated-many/module-042.test.js
+PASS scenarios/generated-many/module-036.test.js
+PASS scenarios/generated-many/module-013.test.js
+PASS scenarios/generated-many/module-018.test.js
+PASS scenarios/generated-many/module-106.test.js
+PASS scenarios/generated-many/module-117.test.js
+PASS scenarios/generated-many/module-002.test.js
+PASS scenarios/generated-many/module-070.test.js
+PASS scenarios/generated-many/module-102.test.js
+PASS scenarios/generated-many/module-047.test.js
+PASS scenarios/generated-many/module-033.test.js
+PASS scenarios/generated-many/module-022.test.js
+PASS scenarios/generated-many/module-028.test.js
+PASS scenarios/generated-many/module-027.test.js
+PASS scenarios/generated-many/module-087.test.js
+PASS scenarios/generated-many/module-092.test.js
+PASS scenarios/generated-many/module-086.test.js
+PASS scenarios/generated-many/module-073.test.js
+PASS scenarios/generated-many/module-062.test.js
+PASS scenarios/generated-many/module-045.test.js
+PASS scenarios/generated-many/module-077.test.js
+PASS scenarios/generated-many/module-069.test.js
+PASS scenarios/generated-many/module-101.test.js
+PASS scenarios/generated-many/module-082.test.js
+PASS scenarios/generated-many/module-064.test.js
+PASS scenarios/generated-many/module-058.test.js
+PASS scenarios/generated-many/module-067.test.js
+PASS scenarios/generated-many/module-040.test.js
+PASS scenarios/generated-many/module-031.test.js
+PASS scenarios/generated-many/module-050.test.js
+PASS scenarios/generated-many/module-023.test.js
+PASS scenarios/generated-many/module-009.test.js
+PASS scenarios/generated-many/module-091.test.js
+PASS scenarios/generated-many/module-046.test.js
+PASS scenarios/generated-many/module-038.test.js
+PASS scenarios/generated-many/module-059.test.js
+PASS scenarios/generated-many/module-039.test.js
+PASS scenarios/generated-many/module-000.test.js
+PASS scenarios/generated-many/module-020.test.js
+PASS scenarios/generated-many/module-099.test.js
+PASS scenarios/generated-many/module-094.test.js
+PASS scenarios/generated-many/module-098.test.js
+PASS scenarios/generated-many/module-084.test.js
+PASS scenarios/generated-many/module-074.test.js
+PASS scenarios/generated-many/module-044.test.js
+PASS scenarios/generated-many/module-060.test.js
+PASS scenarios/generated-many/module-041.test.js
+PASS scenarios/generated-many/module-034.test.js
+PASS scenarios/generated-many/module-010.test.js
+PASS scenarios/generated-many/module-004.test.js
+PASS scenarios/generated-many/module-014.test.js
+PASS scenarios/generated-many/module-026.test.js
+PASS scenarios/generated-many/module-090.test.js
+PASS scenarios/generated-many/module-017.test.js
+PASS scenarios/generated-many/module-032.test.js
+PASS scenarios/generated-many/module-111.test.js
+PASS scenarios/generated-many/module-006.test.js
+PASS scenarios/generated-many/module-071.test.js
+PASS scenarios/generated-many/module-019.test.js
+PASS scenarios/generated-many/module-096.test.js
+PASS scenarios/generated-many/module-049.test.js
+PASS scenarios/generated-many/module-029.test.js
+PASS scenarios/generated-many/module-025.test.js
+PASS scenarios/generated-many/module-037.test.js
+PASS scenarios/generated-many/module-052.test.js
+PASS scenarios/generated-many/module-076.test.js
+
+Summary of all failing tests
+FAIL scenarios/generated-many/module-057.test.js
+  ● module 057 › adds
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 59
+    Received: 58
+
+      1 | const { sum } = require('../../src/math');
+      2 | describe('module 057', () => {
+    > 3 |   test('adds', () => expect(sum(57, 1)).toBe(59));
+        |                                         ^
+      4 |   test('identity', () => expect(sum(57, 0)).toBe(57));
+      5 |   test('commutes', () => expect(sum(1, 57)).toBe(sum(57, 1)));
+      6 | });
+
+      at Object.toBe (scenarios/generated-many/module-057.test.js:3:41)
+
+
+Test Suites: 1 failed, 119 passed, 120 total
+Tests:       1 failed, 359 passed, 360 total
+Snapshots:   0 total
+Time:        0.873 s, estimated 1 s
+Ran all test suites matching /scenarios\/generated-many/i.
+Test results written to: ../../../../../..<RUN>/many-suites/jest-result.json

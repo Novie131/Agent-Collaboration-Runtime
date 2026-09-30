@@ -1,14 +1,15 @@
+import { fileURLToPath } from 'node:url';
 import { existsSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { claudeCodeAdapter } from '../src/adapters/claude-code.js';
-import { summarizeUsage } from '../src/observe/usage.js';
-import type { UsageEvent } from '../src/schema/events.js';
+import { claudeCodeAdapter } from '@acr/transcripts/claude-code.js';
+import { summarizeUsage } from '@acr/transcripts/usage.js';
+import type { UsageEvent } from '@acr/protocol/transcript-events.js';
 
 /**
  * De-identified structure of a real Claude Code 2.1.283 (VS Code extension) session,
  * produced by scripts/deidentify-claude-transcript.mjs. Text bodies are hashes.
  */
-const FIXTURE = new URL('../fixtures/real/claude-code-2.1.283/session.deidentified.jsonl', import.meta.url).pathname;
+const FIXTURE = fileURLToPath(new URL('../fixtures/real/claude-code-2.1.283/session.deidentified.jsonl', import.meta.url));
 
 describe.skipIf(!existsSync(FIXTURE))('claude-code adapter on a real (de-identified) 2.1.283 transcript', () => {
   it('parses in strict mode without skipped lines', async () => {

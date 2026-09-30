@@ -1,38 +1,42 @@
 {
-  "name": "agent-efficiency",
+  "name": "agent-collaboration-runtime",
   "version": "0.1.0",
-  "description": "Quality-first token optimisation tooling for coding agents: session diagnostics, a controlled Jest result view, and paired quality/token comparison.",
+  "description": "ACR: a local, token-aware hub through which ChatGPT and Claude Code exchange tasks, results, evidence and decisions.",
   "license": "MIT",
   "private": true,
   "type": "module",
-  "bin": {
-    "agent-efficiency": "./dist/cli.js"
-  },
-  "files": [
-    "dist",
-    "integrations",
-    "docs",
-    "README.md",
-    "LICENSE"
-  ],
   "engines": {
-    "node": ">=20.11"
+    "node": ">=24"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
     "test:watch": "vitest",
-    "cli": "node dist/cli.js",
-    "fixtures:jest": "node scripts/capture-jest-fixtures.mjs"
-  },
-  "dependencies": {
-    "commander": "^12.1.0",
-    "zod": "^3.23.8"
+    "check:core": "node scripts/check-core-imports.mjs",
+    "acr": "node apps/cli/dist/cli.js",
+    "fixtures:jest": "node scripts/capture-jest-fixtures.mjs",
+    "scan:secrets": "node scripts/scan-secrets.mjs"
   },
   "devDependencies": {
-    "@types/node": "^22.10.0",
+    "@acr/artifacts": "workspace:*",
+    "@acr/benchmark": "workspace:*",
+    "@acr/cli": "workspace:*",
+    "@acr/compression": "workspace:*",
+    "@acr/core": "workspace:*",
+    "@acr/git": "workspace:*",
+    "@acr/mcp": "workspace:*",
+    "@acr/platform": "workspace:*",
+    "@acr/protocol": "workspace:*",
+    "@acr/runner": "workspace:*",
+    "@acr/security": "workspace:*",
+    "@acr/storage": "workspace:*",
+    "@acr/telemetry": "workspace:*",
+    "@acr/transcripts": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.31.0",
+    "@types/node": "^24.0.0",
     "typescript": "^5.6.3",
-    "vitest": "^2.1.8"
+    "vitest": "^4.1.11",
+    "zod": "^3.23.8"
   }
 }

@@ -4,12 +4,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Writable } from 'node:stream';
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { expandArtifact } from '../src/artifacts/expand.js';
-import { RunManifest } from '../src/artifacts/manifest.js';
-import { ArtifactError } from '../src/artifacts/store.js';
-import { JEST_V1 } from '../src/policies/registry.js';
-import { runJest } from '../src/runner/jest.js';
-import { runTestCommand, WRAPPER_EXIT, type TestCommandOptions } from '../src/runner/test-command.js';
+import { expandArtifact } from '@acr/artifacts/expand.js';
+import { RunManifest } from '@acr/artifacts/manifest.js';
+import { ArtifactError } from '@acr/artifacts/store.js';
+import { JEST_V1 } from '@acr/runner/policy-registry.js';
+import { runJest } from '@acr/runner/jest.js';
+import { runTestCommand, WRAPPER_EXIT, type TestCommandOptions } from '@acr/runner/test-command.js';
 import { makeResult, makeStderr } from './helpers/jest.js';
 
 const FAKE_JEST = `
@@ -21,7 +21,7 @@ fs.appendFileSync(path.join(process.cwd(), 'invocations.log'), JSON.stringify(ar
 const sc = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'scenario.json'), 'utf8'));
 if (sc.hang) { setInterval(() => {}, 1000); return; }
 if (sc.selfSignal) { process.kill(process.pid, sc.selfSignal); setInterval(() => {}, 1000); return; }
-if (sc.result && out) fs.writeFileSync(out, typeof sc.result === 'string' ? sc.result : JSON.stringify(sc.result).split(sc.rootToken).join(process.cwd()));
+if (sc.result && out) fs.writeFileSync(out, typeof sc.result === 'string' ? sc.result : JSON.stringify(sc.result).split(sc.rootToken).join(JSON.stringify(process.cwd()).slice(1, -1)));
 if (sc.stdout) process.stdout.write(sc.stdout);
 if (sc.stderr) process.stderr.write(sc.stderr);
 process.exitCode = sc.exit;
@@ -191,7 +191,8 @@ describe('abnormal execution never reports a pass', () => {
     expect(r.stderr).toContain('not a passing result');
   });
 
-  it('killed by signal → 128+n with the signal recorded', async () => {
+  // POSIX self-signals do not exist on Windows (SPEC §6.4); the mapping is exercised on macOS/Linux.
+  it.skipIf(process.platform === 'win32')('killed by signal → 128+n with the signal recorded', async () => {
     await scenario({ selfSignal: 'SIGTERM' });
     const r = await run('optimize');
     expect(r.code).toBe(143);

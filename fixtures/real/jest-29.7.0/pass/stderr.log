@@ -1,0 +1,9 @@
+PASS scenarios/pass/sum.test.js
+PASS scenarios/pass/slugify.test.js
+
+Test Suites: 2 passed, 2 total
+Tests:       68 passed, 68 total
+Snapshots:   0 total
+Time:        0.119 s, estimated 1 s
+Ran all test suites matching /scenarios\/pass/i.
+Test results written to: ../../../../../..<RUN>/pass/jest-result.json

@@ -1,4 +1,4 @@
-import type { ExperimentManifest, RunRecord, Settings, TaskManifest } from '../../src/schema/evaluation.js';
+import type { ExperimentManifest, RunRecord, Settings, TaskManifest } from '@acr/benchmark/evaluation.js';
 
 export const SETTINGS: Settings = {
   host: { name: 'claude-code', version: '0.0.0-synthetic' },
@@ -72,7 +72,7 @@ export function runRec(taskId: string, group: RunRecord['group'], rep: number, o
 
 export function experiment(tasks: TaskManifest[], runs: RunRecord[], extra: Partial<ExperimentManifest> = {}): ExperimentManifest {
   return {
-    experiment_type: 'agent-efficiency/experiment',
+    experiment_type: 'experiment',
     experiment_version: 1,
     experiment_id: 'synthetic',
     synthetic: true,

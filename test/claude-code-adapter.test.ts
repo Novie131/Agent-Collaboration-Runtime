@@ -1,14 +1,15 @@
+import { fileURLToPath } from 'node:url';
 import { mkdtemp, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { claudeCodeAdapter } from '../src/adapters/claude-code.js';
-import { InvalidInputError } from '../src/adapters/types.js';
-import { runRules } from '../src/observe/rules.js';
-import { summarizeUsage } from '../src/observe/usage.js';
-import type { UsageEvent } from '../src/schema/events.js';
+import { claudeCodeAdapter } from '@acr/transcripts/claude-code.js';
+import { InvalidInputError } from '@acr/transcripts/types.js';
+import { runRules } from '@acr/telemetry/rules.js';
+import { summarizeUsage } from '@acr/transcripts/usage.js';
+import type { UsageEvent } from '@acr/protocol/transcript-events.js';
 
-const FIXTURE = new URL('../fixtures/synthetic/claude-code/session.jsonl', import.meta.url).pathname;
+const FIXTURE = fileURLToPath(new URL('../fixtures/synthetic/claude-code/session.jsonl', import.meta.url));
 const opts = { strict: false, maxLineBytes: 1 << 20, inputId: 'session.jsonl' };
 
 describe('claude-code adapter (experimental, synthetic fixture)', () => {
@@ -58,7 +59,7 @@ describe('claude-code adapter (experimental, synthetic fixture)', () => {
     expect(r001[0]!.subject).toBe('src/sum.ts');
   });
 
-  it('links agent-efficiency test output to its artifact and detects expansion (R004, adoption)', async () => {
+  it('links legacy agent-efficiency test output to its artifact and detects expansion (R004, adoption)', async () => {
     const dir = await mkdtemp(join(tmpdir(), 'ae-cc-'));
     const p = join(dir, 's.jsonl');
     const id = 'ae_20260101000000_abcdef12';

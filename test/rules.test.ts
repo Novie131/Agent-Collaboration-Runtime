@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_RULE_CONFIG, runRules } from '../src/observe/rules.js';
+import { DEFAULT_RULE_CONFIG, runRules } from '@acr/telemetry/rules.js';
 import { EventBuilder } from './helpers/events.js';
 
 const rules = (b: EventBuilder) => runRules(b.events, DEFAULT_RULE_CONFIG);
@@ -173,9 +173,9 @@ describe('R003 environment-failure retry', () => {
 describe('R004 expansion after compressed output', () => {
   it('flags an expansion within 10 calls, with causality unproven (positive)', () => {
     const b = new EventBuilder();
-    b.tool('shell', 'agent-efficiency test', { args: { command: 'agent-efficiency test' } }, { artifact_id: 'ae_1', policy_id: 'jest-v1' });
+    b.tool('shell', 'acr test', { args: { command: 'acr test' } }, { artifact_id: 'ae_1', policy_id: 'jest-v1' });
     b.other();
-    b.tool('shell', 'agent-efficiency expand', { args: { command: 'expand' }, expanded_from_artifact_id: 'ae_1' });
+    b.tool('shell', 'acr expand', { args: { command: 'expand' }, expanded_from_artifact_id: 'ae_1' });
     const f = rules(b).findings;
     expect(f.map((x) => x.rule)).toEqual(['R004']);
     expect(f[0]!.causality).toBe('unproven');

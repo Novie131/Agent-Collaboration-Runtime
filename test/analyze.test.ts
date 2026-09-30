@@ -1,10 +1,10 @@
 import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { InvalidInputError } from '../src/adapters/types.js';
-import { analyze } from '../src/observe/analyze.js';
-import { OutputExistsError } from '../src/report/write.js';
+import { InvalidInputError } from '@acr/transcripts/types.js';
+import { analyze } from '@acr/telemetry/analyze.js';
+import { OutputExistsError } from '@acr/platform/write.js';
 import { EventBuilder } from './helpers/events.js';
 
 let dir: string;
@@ -24,7 +24,7 @@ describe('analyze (canonical adapter)', () => {
     const { report, written } = await analyze({ input, adapter: 'canonical', outDir: join(dir, 'out'), strict: false, overwrite: false });
     expect(report.findings).toHaveLength(1);
     expect(report.usage.t_task).toBe(10);
-    expect(written.map((w) => w.split('/').pop())).toEqual(['analysis.json', 'analysis.md']);
+    expect(written.map((w) => basename(w))).toEqual(['analysis.json', 'analysis.md']);
     const md = await readFile(written[1]!, 'utf8');
     expect(md).toContain('R001');
     expect(md).toContain('"window_calls": 20');

@@ -1,0 +1,29 @@
+{
+  "name": "@acr/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "(edge) The hub process: both MCP endpoints over Streamable HTTP, workspace setup, test runner wiring.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./*.js": {
+      "acr-source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@acr/core": "workspace:*",
+    "@acr/git": "workspace:*",
+    "@acr/platform": "workspace:*",
+    "@acr/protocol": "workspace:*",
+    "@acr/runner": "workspace:*",
+    "@acr/security": "workspace:*",
+    "@acr/storage": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.31.0",
+    "zod": "^3.25.0"
+  }
+}
