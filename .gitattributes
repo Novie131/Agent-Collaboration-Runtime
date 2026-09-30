@@ -1,0 +1,4 @@
+# Keep line endings stable on every OS (Windows runners default to CRLF checkouts).
+* text=auto eol=lf
+# Real tool output is a fixture: keep its bytes exactly as captured.
+fixtures/** -text
