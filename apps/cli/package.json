@@ -26,6 +26,7 @@
     "@acr/platform": "workspace:*",
     "@acr/protocol": "workspace:*",
     "@acr/runner": "workspace:*",
+    "@acr/security": "workspace:*",
     "@acr/telemetry": "workspace:*",
     "@acr/transcripts": "workspace:*",
     "commander": "^12.1.0"

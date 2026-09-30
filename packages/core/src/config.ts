@@ -39,6 +39,17 @@ export const WorkspaceConfig = z
       .default({}),
     /** Extra deny-list globs; the built-in deny-list always applies (SPEC §28.1). */
     deny: z.array(z.string()).default([]),
+    /** Outgoing privacy guard for everything sent to ChatGPT (SPEC §28.6). On by default. */
+    privacy: z
+      .object({
+        env_files: z.boolean().default(true),
+        pii: z.array(z.enum(['email', 'phone', 'tw_id', 'credit_card'])).default(['email', 'phone', 'tw_id', 'credit_card']),
+        /** Added to the built-in allow-list (example.com, example.org, …). */
+        allow_email_domains: z.array(z.string()).default([]),
+        block_env_threshold: z.number().int().min(1).default(3),
+      })
+      .strict()
+      .default({}),
     runner: z
       .object({
         mode: z.enum(['shadow', 'optimize', 'passthrough']).default('shadow'),

@@ -26,4 +26,5 @@ jobs:
       - run: pnpm run check:core
       - run: pnpm run typecheck
       - run: pnpm run build
+      - run: pnpm run scan:secrets
       - run: pnpm test

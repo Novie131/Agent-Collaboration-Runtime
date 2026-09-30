@@ -89,6 +89,9 @@ importers:
       '@acr/runner':
         specifier: workspace:*
         version: link:../../packages/runner
+      '@acr/security':
+        specifier: workspace:*
+        version: link:../../packages/security
       '@acr/telemetry':
         specifier: workspace:*
         version: link:../../packages/telemetry

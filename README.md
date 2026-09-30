@@ -22,6 +22,17 @@
 - **ChatGPT 只讀得到該任務範圍**：任務 scope 與實際變更的檔案、artifact；其餘要透過 `request_context` 請 Claude 提供。機密檔案一律拒絕，內容遮罩。
 - **量測分開報告**：Claude 端為實測（transcript，下限），ChatGPT 端為工具 I/O 估算（下限），兩者不相加。
 
+## 資安
+
+- **外送檢查**：所有送往 ChatGPT 的內容都經過同一層檢查，沒有例外。
+  - 專案裡 `.env` 的值出現在任何地方都會遮成 `[REDACTED:env:KEY]`；
+  - 看起來像整份 `.env` 的內容會**整個擋下**；
+  - 個資（email、手機、身分證字號、信用卡號）與金鑰格式也會遮罩；
+  - 只記錄遮了幾筆，不記錄原值。
+- **提示注入**：檔案或 diff 裡若藏有「忽略先前指示」「呼叫 accept_task」之類的文字，會附上警告；ChatGPT 也被要求把 repo 內容視為資料。
+- **`acr doctor`**（每次 `acr start` 都會自動執行）：檢查外送檢查涵蓋哪些 key、`.env` 是否被 git 追蹤、token 是否進了 repo、資料權限（自動修正）、FileVault、這台電腦是否有多個使用者。
+- 限制：依樣式與 `.env` 值比對，不在 `.env` 也不符合已知格式的機密可能漏掉；Claude Code 自己讀檔送往 Anthropic 的內容不在 ACR 控制範圍。詳見 [SPEC §28](Document/plan/agent-collaboration-runtime-SPEC.md)。
+
 ## 安裝與建置
 
 需要 Node.js ≥ 24 與 pnpm（可用 `corepack pnpm`）、git。
@@ -61,6 +72,7 @@ acr connect chatgpt      # 說明如何只把 remote endpoint 經 Secure MCP Tun
 | `decisions list` | 決策紀錄 |
 | `metrics <id>` | Claude 實測 vs ChatGPT 估算（不相加） |
 | `connect claude\|chatgpt` | 連線設定說明 |
+| `doctor [--no-fix]` | 資安檢查（外送檢查、`.env`、token、權限、磁碟加密） |
 | `hook` | Claude Code PostToolUse hook：記錄哪個 session 處理哪個任務（供量測） |
 
 ### MCP 工具

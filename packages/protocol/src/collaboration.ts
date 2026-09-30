@@ -301,6 +301,10 @@ export type HubResponse<T> = {
   /** Suggested next step for the developer; advice only, never an automatic action. */
   next?: string;
   estimatedTokens: number;
+  /** What the outgoing privacy guard masked in this response (counts only, never values). */
+  privacy?: { masked: Record<string, number> };
+  /** Advisory warnings, e.g. suspected prompt injection inside repository content. */
+  warnings?: string[];
 };
 
 export type HubErrorCode =

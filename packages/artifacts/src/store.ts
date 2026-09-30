@@ -24,7 +24,7 @@ export function newArtifactId(now = new Date()): string {
 /** Creates a fresh run directory; refuses to reuse an existing one. */
 export async function createRunDir(runDir: string): Promise<string> {
   const abs = resolve(runDir);
-  await mkdir(dirname(abs), { recursive: true });
+  await mkdir(dirname(abs), { recursive: true, mode: 0o700 });
   try {
     await mkdir(abs, { mode: 0o700 });
   } catch (err) {

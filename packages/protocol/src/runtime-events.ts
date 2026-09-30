@@ -25,6 +25,9 @@ export const RuntimeEventType = z.enum([
   'GUARD_OVERRIDDEN',
   'TOOL_CALLED',
   'SESSION_REPORTED',
+  'PRIVACY_FILTERED',
+  'RESPONSE_BLOCKED',
+  'INJECTION_SUSPECTED',
 ]);
 export type RuntimeEventType = z.infer<typeof RuntimeEventType>;
 

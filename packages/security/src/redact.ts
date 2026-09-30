@@ -24,9 +24,14 @@ const PATTERNS: { name: string; re: RegExp; replace?: (m: string, ...g: string[]
     replace: (_m, scheme) => `${scheme}[REDACTED:credentials]@`,
   },
   {
+    // `DB_PASSWORD=hunter2`, `apiKey: "abc…"`, `secret = 'x…'`. The name must END in a secret word
+    // (so `max_tokens`, `token_count` do not match) and the value must be a literal: quoted, or an
+    // unquoted run without code punctuation (so `token = localToken(cfg)` / `row.secret` do not match).
     name: 'assignment',
-    re: /\b([A-Za-z0-9_]*(?:PASSWORD|PASSWD|SECRET|TOKEN|API_?KEY|ACCESS_?KEY|PRIVATE_?KEY)[A-Za-z0-9_]*)(\s*[:=]\s*)(["']?)([^\s"']{4,})\3/gi,
-    replace: (_m, key, sepr, q) => `${key}${sepr}${q}[REDACTED:assignment]${q}`,
+    // Unquoted values must contain a digit or symbol, so type annotations (`token: string`) do not match;
+    // letter-only secrets that live in .env files are still masked by the privacy guard's .env matching.
+    re: /\b([A-Za-z0-9_]*(?:PASSWORD|PASSWD|PWD|SECRET|TOKEN|API_?KEY|ACCESS_?KEY|PRIVATE_?KEY|CREDENTIALS?))\b(\s*[:=]\s*)(?:(["'])([^"'\s]{4,})\3|(?=[^\s"'().,;[\]{}<>$`]*[\d\-+/=!@#%^&*])([^\s"'().,;[\]{}<>$`]{6,})(?![\w(.]))/gi,
+    replace: (_m, key, sepr, q) => `${key}${sepr}${q ?? ''}[REDACTED:assignment]${q ?? ''}`,
   },
 ];
 

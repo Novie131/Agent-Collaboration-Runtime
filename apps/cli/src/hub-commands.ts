@@ -7,6 +7,7 @@ import { RESOLVE_TARGETS } from '@acr/core/task/machine.js';
 import { findWorkspaceRoot, initWorkspace, localToken, openWorkspace, type OpenedWorkspace } from '@acr/mcp/workspace.js';
 import { startHubServers } from '@acr/mcp/server.js';
 import type { HubResponse } from '@acr/protocol/collaboration.js';
+import { formatChecks, runDoctor } from './doctor.js';
 
 const EXIT = { ok: 0, failed: 1, usage: 2 } as const;
 const out = (s: string) => process.stdout.write(`${s}\n`);
@@ -76,6 +77,9 @@ export function addHubCommands(program: Command, setExit: (code: number) => void
         out(`ACR hub for ${ws.config.name} (${root})`);
         out(`  remote (ChatGPT):     ${running.remoteUrl}   (expose only via a bridge; see \`acr connect chatgpt\`)`);
         out(`  local  (Claude Code): ${running.localUrl}   (bearer token; see \`acr connect claude\`)`);
+        const checks = runDoctor(ws, { fix: true });
+        out(`Security checks:\n${formatChecks(checks)}`);
+        if (checks.some((c) => c.status === 'fail')) out('  ✗ problems found above; run `acr doctor` for details. The hub is running anyway.');
         out('Ctrl+C to stop.');
         await new Promise<void>((resolve) => {
           const stop = () => resolve();
@@ -86,6 +90,27 @@ export function addHubCommands(program: Command, setExit: (code: number) => void
         ws.close();
         out('hub stopped');
         return EXIT.ok;
+      })(),
+    );
+
+  program
+    .command('doctor')
+    .description('Security checks: privacy guard, .env files, token placement, data permissions, disk encryption.')
+    .option('--no-fix', 'report permission problems instead of fixing them')
+    .option('--json', 'JSON output', false)
+    .action((o: { fix: boolean; json: boolean }) =>
+      guard(() => {
+        const root = findWorkspaceRoot(process.cwd());
+        if (!root) throw new Error('not inside an ACR workspace; run `acr init` first');
+        const ws = openWorkspace(root, { withGit: false, tests: null });
+        try {
+          const checks = runDoctor(ws, { fix: o.fix });
+          if (o.json) out(JSON.stringify(checks, null, 2));
+          else out(`ACR security checks for ${ws.config.name} (${root})\n${formatChecks(checks)}`);
+          return checks.some((c) => c.status === 'fail') ? EXIT.failed : EXIT.ok;
+        } finally {
+          ws.close();
+        }
       })(),
     );
 
@@ -197,7 +222,8 @@ export function addHubCommands(program: Command, setExit: (code: number) => void
     .action((id: string, o: { for: 'claude' | 'chatgpt' }) =>
       guard(() =>
         withWs(async (ws) => {
-          if (o.for === 'chatgpt') return show(await ws.hub.getResult(id), false);
+          // Exactly what ChatGPT would receive, after the privacy guard (preview: nothing is recorded).
+          if (o.for === 'chatgpt') return show(ws.hub.guardOutgoing('get_result', id, await ws.hub.getResult(id), false), true);
           const t = ws.store.getTask(id);
           if (!t) throw new Error(`task ${id} not found`);
           const bundle = claudeTaskBundle({ task: t, decisions: ws.store.listDecisions(), reviews: ws.store.listReviews(id), contextRequests: ws.store.listContextRequests(id) });

@@ -15,7 +15,8 @@
     "test:watch": "vitest",
     "check:core": "node scripts/check-core-imports.mjs",
     "acr": "node apps/cli/dist/cli.js",
-    "fixtures:jest": "node scripts/capture-jest-fixtures.mjs"
+    "fixtures:jest": "node scripts/capture-jest-fixtures.mjs",
+    "scan:secrets": "node scripts/scan-secrets.mjs"
   },
   "devDependencies": {
     "@acr/artifacts": "workspace:*",

@@ -914,6 +914,55 @@ It is applied to everything leaving the hub on the remote endpoint and to all lo
 
 The RuntimeEvent log is the audit log. Destructive or guard-overriding actions require a human actor.
 
+### 28.6 Outgoing privacy guard ([ADR-0011](../../docs/adr/0011-outgoing-privacy-guard.md))
+
+Every response on the remote endpoint passes one guard (`packages/security/privacy.ts`) before it leaves the machine. There is no bypass. The guard does four things:
+
+1. **`.env` values.** It finds the workspace's `.env` / `.env.*` files, skipping `*.example|sample|template` and dependency or build directories, and masks every secret-looking value wherever it appears, as `[REDACTED:env:KEY]`. It re-reads the files when they change.
+2. **Whole `.env` files.** If a response carries entries from `.env` files at or above `privacy.block_env_threshold` (default 3), the whole response is **withheld** and replaced with `DENIED`. Key names alone (e.g. a `.env.example` in a diff) count only when at least one real value is present too.
+3. **Personal data.** It masks:
+   - email addresses (documentation domains such as `example.com` are allowed);
+   - Taiwan mobile and `+`-prefixed international phone numbers;
+   - Taiwan national and resident IDs (checksum-validated);
+   - card numbers (Luhn-validated).
+4. **Secret patterns** (§28.4). It also masks secret-looking assignments. The name must end in a secret word and the value must be a literal, so ordinary code stays reviewable.
+
+What gets reported:
+- The response carries `privacy.masked` counts, so ChatGPT knows a placeholder is deliberate.
+- The event log records `PRIVACY_FILTERED` / `RESPONSE_BLOCKED` with counts only, never values.
+- `acr context show --for chatgpt` previews exactly what ChatGPT would receive.
+
+Configuration lives in `.agent-runtime/config.json` → `privacy`. All protections are on by default.
+
+**Limits.**
+- Detection is deterministic pattern and value matching. A secret that lives in neither a `.env` file nor a recognisable format can still pass.
+- The guard protects what ACR sends to ChatGPT. It does not control what Claude Code sends to Anthropic when Claude reads files itself.
+
+### 28.7 Prompt injection
+
+- **Warning in the response.** Repository content (files, diffs, artifacts, Claude's text) is checked for instructions aimed at the assistant, in English and Chinese. Examples: "ignore previous instructions", "call accept_task". A hit adds a warning to the response and an `INJECTION_SUSPECTED` event.
+- **Advisory only.** The hub does not block these, because legitimate code can match.
+- **Server instructions.** The remote endpoint's instructions tell ChatGPT to treat returned content as data, never as instructions.
+- **Confirmation.** Write tools keep ChatGPT's per-call confirmation.
+
+### 28.8 Local checks (`acr doctor`)
+
+`acr doctor` runs on every `acr start` and checks:
+- the privacy guard's coverage;
+- that no `.env` file is tracked by git or missing from `.gitignore`;
+- that the local token is not in any repository file;
+- that the data directory, database and token are owner-only (fixed automatically);
+- disk encryption (FileVault on macOS);
+- whether other login accounts exist.
+
+It exits 1 on any failure.
+
+### 28.9 This repository
+
+The ACR repository gets the same protection:
+- CI runs `scripts/scan-secrets.mjs`, which is the privacy guard applied to every tracked file.
+- GitHub secret scanning, push protection and Dependabot alerts/updates are enabled.
+
 ---
 
 ## 29. Telemetry and Metrics
@@ -1279,6 +1328,7 @@ A feature is done when:
 | [0008](../../docs/adr/0008-node-sqlite-node24.md) | `node:sqlite` on Node 24+ behind a storage interface |
 | [0009](../../docs/adr/0009-scoped-read-access-for-chatgpt.md) | ChatGPT reads only task-scoped files; hub computes the diff |
 | [0010](../../docs/adr/0010-no-ui-automation.md) | No DOM scraping or UI automation |
+| [0011](../../docs/adr/0011-outgoing-privacy-guard.md) | One outgoing privacy guard on the remote endpoint: mask values, block whole .env files |
 
 ---
 

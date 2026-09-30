@@ -1,5 +1,5 @@
 import { randomBytes } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { HubArtifacts } from '@acr/core/artifacts.js';
 import { WorkspaceConfig } from '@acr/core/config.js';
@@ -77,7 +77,12 @@ export type OpenedWorkspace = { root: string; config: WorkspaceConfig; hub: Hub;
 export function openWorkspace(root: string, opts: { withGit?: boolean; tests?: TestRunner | null } = {}): OpenedWorkspace {
   const config = loadConfig(root);
   const dir = dataDir(config);
-  const db = openDatabase(join(dir, 'hub.sqlite'));
+  const dbFile = join(dir, 'hub.sqlite');
+  const db = openDatabase(dbFile);
+  // SQLite creates files with the process umask (often world-readable); the DB holds task text and paths.
+  if (process.platform !== 'win32') {
+    for (const f of [dbFile, `${dbFile}-wal`, `${dbFile}-shm`]) if (existsSync(f)) chmodSync(f, 0o600);
+  }
   const store = new HubStore(db);
   const hub = new Hub({
     store,
