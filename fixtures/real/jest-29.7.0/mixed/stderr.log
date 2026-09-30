@@ -1,0 +1,16 @@
+PASS scenarios/mixed/mixed.test.js
+  mixed statuses
+    ✓ passes (1 ms)
+    ✓ matches inline snapshot (1 ms)
+    ✓ matches file snapshot
+    ○ skipped skipped on purpose
+    ✎ todo write a test for negative numbers
+  skipped block
+    ○ skipped never runs
+
+Test Suites: 1 passed, 1 total
+Tests:       2 skipped, 1 todo, 3 passed, 6 total
+Snapshots:   2 passed, 2 total
+Time:        0.099 s, estimated 1 s
+Ran all test suites matching /scenarios\/mixed/i.
+Test results written to: ../../../../../..<RUN>/mixed/jest-result.json

@@ -1,0 +1,70 @@
+  console.log
+    custom log line — 日本語 ✓
+
+      at Object.log (scenarios/console/console.test.js:4:11)
+
+  console.warn
+    DeprecationWarning: this API will be removed
+
+      3 | test('logs and warns', () => {
+      4 |   console.log('custom log line — 日本語 ✓');
+    > 5 |   console.warn('DeprecationWarning: this API will be removed');
+        |           ^
+      6 |   console.error('something looked wrong but the test continues');
+      7 |   expect(sum(1, 1)).toBe(2);
+      8 | });
+
+      at Object.warn (scenarios/console/console.test.js:5:11)
+
+  console.error
+    something looked wrong but the test continues
+
+      4 |   console.log('custom log line — 日本語 ✓');
+      5 |   console.warn('DeprecationWarning: this API will be removed');
+    > 6 |   console.error('something looked wrong but the test continues');
+        |           ^
+      7 |   expect(sum(1, 1)).toBe(2);
+      8 | });
+      9 |
+
+      at Object.error (scenarios/console/console.test.js:6:11)
+
+PASS scenarios/console/console.test.js
+  ✓ logs and warns (11 ms)
+  ✓ quiet case 0 (1 ms)
+  ✓ quiet case 1
+  ✓ quiet case 2
+  ✓ quiet case 3
+  ✓ quiet case 4
+  ✓ quiet case 5
+  ✓ quiet case 6
+  ✓ quiet case 7
+  ✓ quiet case 8
+  ✓ quiet case 9
+  ✓ quiet case 10
+  ✓ quiet case 11
+  ✓ quiet case 12
+  ✓ quiet case 13
+  ✓ quiet case 14
+  ✓ quiet case 15
+  ✓ quiet case 16
+  ✓ quiet case 17
+  ✓ quiet case 18
+  ✓ quiet case 19
+  ✓ quiet case 20
+  ✓ quiet case 21
+  ✓ quiet case 22
+  ✓ quiet case 23
+  ✓ quiet case 24
+  ✓ quiet case 25
+  ✓ quiet case 26
+  ✓ quiet case 27
+  ✓ quiet case 28
+  ✓ quiet case 29
+
+Test Suites: 1 passed, 1 total
+Tests:       31 passed, 31 total
+Snapshots:   0 total
+Time:        0.111 s, estimated 1 s
+Ran all test suites matching /scenarios\/console/i.
+Test results written to: ../../../../../..<RUN>/console/jest-result.json

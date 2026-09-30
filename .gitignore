@@ -10,3 +10,6 @@ report/
 comparison/
 .agent-runtime/*
 !.agent-runtime/config.json
+
+# real tool output used as test fixtures
+!fixtures/**/*.log
